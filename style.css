@@ -76,7 +76,7 @@ h2:hover {
     border-radius: 10px;
     box-shadow: 4px 4px 4px black;
     transition: 0.5s ease; 
-   
+    cursor: pointer;
 
 }
 
@@ -86,6 +86,10 @@ h2:hover {
     border:1px solid white ;
     box-shadow: px 5px 10px rgb(252, 251, 233);
 
+}
+
+.card.flipped {
+    transform: rotateY(180deg);
 }
 
 #puntuacionContainer {
@@ -142,7 +146,38 @@ h2:hover {
     }
        
     }
+/* codigo añadido */
 
+.card .img {
+    width: 10px;
+    height: 20px;
+    display: flex;
+    background-color:  rgb(116, 146, 156); 
+    padding: 43px 20px;
+    border-radius: 5px;
+    align-items: center;
+    justify-content: center;
+}
+
+
+/* fallo en las pareja */
+.error {
+    animation: card 0.2s alternate ease;
+}
+@keyframes card {
+    0% {transform: rotateX(0); }
+    100% {transform: rotateX(15deg) rotateY(15deg);  }
+}
+
+/* acireto en las parejas */
+.accept {
+    animation: cards 0.4s alternate ease-in;
+}
+@keyframes cards {
+    0% {transform: scale(1); }
+    50% {transform: scale(1.10); }
+
+}
 
 @media (width < 700px) {
 
