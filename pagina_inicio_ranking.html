@@ -4,50 +4,32 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Página de Inicio</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            text-align: center;
-            margin: 50px;
-        }
-        input {
-            padding: 10px;
-            font-size: 16px;
-        }
-        button {
-            padding: 10px;
-            font-size: 16px;
-            margin-top: 10px;
-            cursor: pointer;
-        }
-        .level {
-            display: inline-block;
-            margin: 10px;
-            padding: 10px;
-            border: 1px solid #ddd;
-            cursor: pointer;
-        }
-        #ranking {
-            margin-top: 20px;
-        }
-    </style>
-</head>
+    <link rel="stylesheet" href="pagina_inicio_ranking.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,700&family=Kalnia:wght@500&display=swap" rel="stylesheet">
 <body>
 
 <h1>Bienvenido al Juego</h1>
-<label for="nickname">Ingresa tu NickName:</label>
-<input type="text" id="nickname" placeholder="Escribe tu NickName">
+<div class="container">
+    <section id="nickNameContainer">
+        <label for="nickname">Ingresa tu NickName:</label>
+        <input type="text" id="nickname" placeholder="Escribe tu NickName">
+    </section>
+   
+    <section id="levelContainer">
+        <h2>Selecciona <br> un Nivel:</h2>
+        <button class="level level1" onclick="startGame('Fácil')">Fácil</button>
+        <button class="level level2" onclick="startGame('Intermedio')">Intermedio</button>
+        <button class="level level3" onclick="startGame('Difícil')">Difícil</button>
+    </section>
 
-<h2>Selecciona un Nivel:</h2>
-<div class="level" onclick="startGame('Fácil')">Fácil</div>
-<div class="level" onclick="startGame('Intermedio')">Intermedio</div>
-<div class="level" onclick="startGame('Difícil')">Difícil</div>
 
-<div id="ranking">
+    <div id="ranking">
     <h2>Ranking de Puntuaciones:</h2>
     <ol id="scoreList"></ol>
 </div>
-
+</div>
 <script>
     function startGame(level) {
         const nickname = document.getElementById('nickname').value;
