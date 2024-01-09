@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Página de Inicio</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 50px;
+        }
+        input {
+            padding: 10px;
+            font-size: 16px;
+        }
+        button {
+            padding: 10px;
+            font-size: 16px;
+            margin-top: 10px;
+            cursor: pointer;
+        }
+        .level {
+            display: inline-block;
+            margin: 10px;
+            padding: 10px;
+            border: 1px solid #ddd;
+            cursor: pointer;
+        }
+        #ranking {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+
+<h1>Bienvenido al Juego</h1>
+<label for="nickname">Ingresa tu NickName:</label>
+<input type="text" id="nickname" placeholder="Escribe tu NickName">
+
+<h2>Selecciona un Nivel:</h2>
+<div class="level" onclick="startGame('Fácil')">Fácil</div>
+<div class="level" onclick="startGame('Intermedio')">Intermedio</div>
+<div class="level" onclick="startGame('Difícil')">Difícil</div>
+
+<div id="ranking">
+    <h2>Ranking de Puntuaciones:</h2>
+    <ol id="scoreList"></ol>
+</div>
+
+<script>
+    function startGame(level) {
+        const nickname = document.getElementById('nickname').value;
+        if (nickname.trim() === '') {
+            alert('Por favor, introduce un NickName.');
+        } else {
+            alert(`¡Hola ${nickname}! Has seleccionado el nivel: ${level}`);
+            // Simulación de puntuación aleatoria
+            const score = Math.floor(Math.random() * 100);
+            updateRanking(nickname, level, score);
+            displayRanking();
+        }
+    }
+
+    function updateRanking(nickname, level, score) {
+        const scores = JSON.parse(localStorage.getItem('scores')) || [];
+        scores.push({ nickname, level, score });
+        localStorage.setItem('scores', JSON.stringify(scores));
+    }
+
+    function displayRanking() {
+        const scoreList = document.getElementById('scoreList');
+        scoreList.innerHTML = '';
+
+        const scores = JSON.parse(localStorage.getItem('scores')) || [];
+
+        scores.sort((a, b) => b.score - a.score); // Ordenar por puntuación descendente
+
+        scores.slice(0, 5).forEach(entry => {
+            const listItem = document.createElement('li');
+            listItem.textContent = `${entry.nickname} - ${entry.level}: ${entry.score} puntos`;
+            scoreList.appendChild(listItem);
+        });
+    }
+</script>
+
+</body>
+</html>
