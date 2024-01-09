@@ -10,17 +10,6 @@
 
 /*Estilos para el Desktop*/
 
-#buttonStart {
-    width: 120px;
-    height: 120px;
-    font-size: 1rem;
-    border-radius: 50%;
-    background-color: brown;
-    color: white; 
-    margin-left: 110px;
-}
-
-
 
 h1 {
     margin: 50px;
@@ -72,6 +61,8 @@ h2:hover {
     width: 500px;
     height: 500px;
     display: grid; 
+    justify-items: center;
+    align-items: center;
     grid-template-columns:repeat(4, 1fr) ;
     grid-template-rows: repeat(4, 1fr);
     
@@ -149,20 +140,9 @@ h2:hover {
         margin: 0;
         font-size: 16px;
     }
-
-    #buttonStart {
-        width: 85px;
-        height: 85px;
-        font-size: 1rem;
-        border-radius: 50%;
-        background-color: brown;
-        color: white; 
-        margin-top: 10px;
-        margin-left: 40px;
-
        
     }
-}
+
 
 @media (width < 700px) {
 
@@ -182,15 +162,15 @@ h2:hover {
     }
 
     #cardsContainer {
-        width: 320px;
-        height: 320px;
+        width: 360px;
+        height: 360px;
         margin-bottom: 50px;
         
         
     }
     .card {
-        width: 80px;
-        height: 80px;
+        width: 90px;
+        height: 90px;
 
     }
 
@@ -204,15 +184,7 @@ h2:hover {
         font-size: 16px;
     }
 
-    #buttonStart {
-        width: 70px;
-        height: 70px;
-        font-size: 0.5rem;
-        border-radius: 50%;
-        background-color: brown;
-        color: white; 
-       
-    }
+
     #puntuacionContainer {
         width: 320px;
         height: 80px;
@@ -221,11 +193,12 @@ h2:hover {
         justify-content: center;
         align-items: center;
         gap: 5px;
+        margin-right: 25px;
     }
 
     .estadisticas {
-        width: 100px;
+        width: 200px;
         height: 70px;
-        font-size: 10px;
+        font-size: 16px;
     }
 }
