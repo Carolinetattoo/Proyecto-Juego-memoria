@@ -79,3 +79,34 @@ function untap(buttonId) {
 untap(1);
 untap(2);
 
+// Función para dar vuelta a las cartas
+function untap(clikedCard) {
+    const card = document.getElementById(clikedCard);
+
+    if (!card.classList.contains('flipped')) {
+        card.classList.add("flipped");
+        flippedCards.push(card);
+
+        if (flippedCards.length === 2) {
+            setTimeout(() => {
+                compareCards();
+            }, 1000);
+        }
+    }
+}
+
+// comparar cartas
+function compareCards() {
+    const [card1, card2] = flippedCards;
+
+    if (card1.dataset.card === card2.dataset.card) {
+        
+        card1.classList.remove("flipped");
+        card2.classList.remove("flipped");
+
+    } else {
+        // Aqui va el clasList remove 
+    }
+
+    flippedCards = [];
+}
