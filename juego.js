@@ -1,3 +1,35 @@
+// Me he permitido el lujo de añadir el use strct, no vaya a ser que nos jodan por esto
+'use strict';
+// Cuenta atrás del modal
+let counter = 4;
+const countdown = setInterval(() => {
+    const modalP = document.querySelector('.countdown');
+    counter--;
+    modalP.innerText = counter;
+}, 1000);
+// Paro la cuenta atrás del modal
+function stopCountdown() {
+    clearInterval(countdown);
+}
+const timeoutCountdown = setTimeout(stopCountdown, 4000);
+// Oculto el modal
+setTimeout(() => {
+    const modal = document.querySelector('.modal');
+    modal.style.display = 'none';
+}, 4000)
+// Oculto la cuenta atrás de memorizar y agrego un margen para que no quede raro a la hora de la ocultació
+setTimeout(() => {
+    document.querySelector('.bar-container').style.display = 'none';
+    document.querySelector('main').style.marginBottom = '120px';
+}, 14000);
+// Asigno los niveles
+function easy() {
+    const barEasy = document.querySelector('.bar');
+    barEasy.classList.add('bar-lv1');
+}
+document.addEventListener('load', easy());
+
+
 let untapped = 0;
 const totalButtons = 16;
 

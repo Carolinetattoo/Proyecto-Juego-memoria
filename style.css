@@ -47,7 +47,7 @@ h2:hover {
     max-width: 1400px;
     min-width: 900px;
     display:flex; 
-    flex-direction: row;
+    flex-direction: row; /* Creo que esta linea se puede suprimir */
     justify-content: center;
     align-items: center;
     gap: 10px; 
@@ -84,7 +84,7 @@ h2:hover {
     transform: scale(110%); 
     background-color:  rgb(186, 232, 247);
     border:1px solid white ;
-    box-shadow: px 5px 10px rgb(252, 251, 233);
+    box-shadow: px 5px 10px rgb(252, 251, 233); /* El primer valor no tiene nada asignado, por si se quita o hay que ponerle algún valor */
 
 }
 
@@ -94,6 +94,70 @@ h2:hover {
 
 #puntuacionContainer {
    
+}
+/* Estilos de la barra y el modal */
+.bar-container {
+    width: 100fr;
+    margin: 50px 16%;
+}
+.bar-lv1 {
+    height: 20px;
+    border: 0;
+    background-color: blue;
+    animation: timer 10s;
+    animation-delay: 4s;
+}
+.modal {
+    display: flex;
+    align-content: center;
+    position: fixed; 
+    z-index: 1; 
+    width: 100%; 
+    height: 100%; 
+    overflow: auto; 
+    background-color: rgb(0,0,0); 
+    background-color: rgba(0,0,0,0.4); 
+}
+.modal-countdown {
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    align-items: center;
+    color:  rgb(252, 234, 186);
+    width: 500px;
+    height: 300px;
+    margin: auto;
+    padding: 50px 0;
+    background-color: rgb(22, 41, 47);
+    border-radius: 10px;
+}
+.starting {
+    font-size: 36px;
+    margin: auto;
+}
+.countdown {
+    margin: auto;
+    height: 120px;
+    animation: clock 1s ease-out 4;
+}
+/* Animaciones de la barra y el modal */
+@keyframes clock {
+    0% {
+        font-size: 56px;
+    }
+    100% {
+        font-size: 120px;
+        opacity: 0;
+    }
+}
+@keyframes timer {
+    0% {
+        transform: scaleX(1);
+    }
+    100% {
+        transform: scaleX(0);
+        background-color: red;
+    }
 }
 
 /*Mediaqueries para el diseño en pantallas mas pequeñas*/
