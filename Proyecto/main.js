@@ -1,111 +1,159 @@
-'use strict';
-// Cuenta atrás del modal
-let counter = 4;
-const countdown = setInterval(() => {
-    const modalP = document.querySelector('.countdown');
-    counter--;
-    modalP.innerText = counter;
-}, 1000);
-// Paro la cuenta atrás del modal
-function stopCountdown() {
-    clearInterval(countdown);
-}
-const timeoutCountdown = setTimeout(stopCountdown, 4000);
-// Oculto el modal
-setTimeout(() => {
-    const modal = document.querySelector('.modal');
-    modal.style.display = 'none';
-}, 4000)
-// Oculto la cuenta atrás de memorizar y agrego un margen para que no quede raro a la hora de la ocultació
-setTimeout(() => {
-    document.querySelector('.bar-container').style.display = 'none';
-    document.querySelector('main').style.marginBottom = '120px';
-}, 14000);
-// Asigno los niveles
-function easy() {
-    const barEasy = document.querySelector('.bar');
-    barEasy.classList.add('bar-lv1');
-}
-document.addEventListener('load', easy());
+const ul = document.querySelector('ul#game'); // Reemplaza 'tu-ul' con el ID real de tu ul
+const tiempoInicio = 5000; // 3 segundos de tiempo de inicio
+const flipTime = 1000; // para que cuando fallemos, se sigan viendo durante un segundo las cartas antes de girarlo.
 
 
-let untapped = 0;
-const totalButtons = 16;
 
-// Randomizador
-let cards = {
-    1: 'assets/emoji1.jpg',
-    2: 'assets/emoji2.jpg',
-    3: 'assets/emoji3.jpg',
-    4: 'assets/emoji4.jpg',
-    5: 'assets/emoji5.jpg',
-    6: 'assets/emoji6.jpg',
-    7: 'assets/emoji7.jpg',
-    8: 'assets/emoji8.jpg',
-    9: 'assets/emoji1.jpg',
-    10: 'assets/emoji2.jpg',
-    11: 'assets/emoji3.jpg',
-    12: 'assets/emoji4.jpg',
-    13: 'assets/emoji5.jpg',
-    14: 'assets/emoji6.jpg',
-    15: 'assets/emoji7.jpg',
-    16: 'assets/emoji8.jpg',
-};
+// Array de imágenes
+const imagenes = [
+	  'assets/emoji1.png',
+    'assets/emoji2.png',
+    'assets/emoji3.png',
+    'assets/emoji4.png',
+    'assets/emoji5.png',
+    'assets/emoji6.png',
+    'assets/emoji7.png',
+    'assets/emoji8.png',
+    'assets/emoji1.png',
+    'assets/emoji2.png',
+    'assets/emoji3.png',
+    'assets/emoji4.png',
+    'assets/emoji5.png',
+    'assets/emoji6.png',
+    'assets/emoji7.png',
+    'assets/emoji8.png',
+];
 
-let cardsArray = Object.entries(cards);
-cardsArray.sort(() => Math.random() - 0.5);
-
-// Ponemos cada uno de los resultados en cada uno de los botones
-let buttonResultsMap = {};
-for (let i = 0; i < totalButtons; i++) {
-    const buttonId = i + 1;
-    const cardEntry = cardsArray[i];
-    buttonResultsMap[buttonId] = cardEntry[1];
+// Función para desordenar el array
+function shuffleArray(array) {
+	return array.sort(() => Math.random() - 0.5);
 }
 
+// Función para renderizar las cartas en el tablero
+function renderizarCartas(array) {
+	ul.innerHTML = ''; // Limpiar el contenido del ul
 
-// untap
-function untap(buttonId) {
-    untapped++;
+	const fragment = document.createDocumentFragment(); // Crear un fragmento para agregar los li
+
+	array.forEach((element, index) => {
+		const li = document.createElement('li');
+		li.classList.add('card', 'flipped'); // Añadir las clases 'card' y 'flipped' al li
+		li.id = index; // Asignar una ID autoincrementada
+
+		li.innerHTML = `<div class="content"> 
+                      <div class="front"><img src="assets/imagen-reverso.jpg"></div>
+                      <div class="back"><img src="${element}" alt="Card"></div>
+                    </div>`;
+
+		fragment.append(li);
+	});
+
+	ul.appendChild(fragment);
+}
+
+// Función para iniciar el juego
+function iniciarJuego() {
+	setTimeout(() => {
+		const cartas = document.querySelectorAll('.card');
+		cartas.forEach((carta) => carta.classList.remove('flipped'));
+	}, tiempoInicio);
+}
+shuffleArray(imagenes);
+renderizarCartas(imagenes);
+iniciarJuego();
 
 
-    const result = buttonResultsMap[buttonId];
-    console.log(`Botón ${buttonId} seleccionado`);
-    console.log(`Imagen asociada: ${result}`);
+
+let block = false;
+let clickedCards = []
+
+
+
+
+//Función para darle la vuelta a una carta
+function voltearCarta(carta) {
+  if (!block && !carta.classList.contains('flipped') && clickedCards.length < 2) {
+      carta.classList.add('flipped');
+      clickedCards.push(carta);
+
+      if (clickedCards.length === 2) {
+        block = true;
+          setTimeout(() => checkMatch(), flipTime);
+      }
+  }
 }
 
 
-untap(1);
-untap(2);
+// Función para comprobar si las cartas coinciden
+let scorePositive = 0; 
+const bonutsThreshold = 2; // establecemos el tope para los bonus en puntuación, tanto positivos como negativos, en más de 2 consecutivos.
+let scoreNegative = 0;
+let valueTotalScore = 0;
+let movementValue = 0;
 
-// Función para dar vuelta a las cartas
-function untap(clikedCard) {
-    const card = document.getElementById(clikedCard);
 
-    if (!card.classList.contains('flipped')) {
-        card.classList.add("flipped");
-        flippedCards.push(card);
+function checkMatch() {
+  const [card1, card2] = clickedCards;
+  const content1 = card1.querySelector('.back img').src;
+  const content2 = card2.querySelector('.back img').src;
+ 
 
-        if (flippedCards.length === 2) {
-            setTimeout(() => {
-                compareCards();
-            }, 1000);
-        }
-    }
-}
-
-// comparar cartas
-function compareCards() {
-    const [card1, card2] = flippedCards;
-
-    if (card1.dataset.card === card2.dataset.card) {
+  if (content1 === content2) {
+      card1.classList.add('matched');
+      card2.classList.add('matched');
+      scorePositive++;
+      if (scorePositive === 1){
+        valueTotalScore +=100;
+        movementValue++;
         
-        card1.classList.remove("flipped");
-        card2.classList.remove("flipped");
+      }else if (scorePositive ===2){
+        valueTotalScore +=125;
+        movementValue++;
+      } else {
+        valueTotalScore +=150;
+        movementValue++;
+      }
 
-    } else {
-        // Aqui va el clasList remove 
-    }
+      
+  } else {
+      card1.classList.remove('flipped');
+      card2.classList.remove('flipped');
+      scorePositive = 0;
+      scoreNegative ++; 
+        if (scoreNegative ===1){
+          valueTotalScore -=10;
+          movementValue++;
+        }else if (scoreNegative ===2){
+          valueTotalScore -=20;
+          movementValue++;
+        }else {
+          valueTotalScore -=30;
+          movementValue++;
+        }
+  
+  }
+ 
 
-    flippedCards = [];
+  clickedCards = [];
+  block = false;
+
+  
+  scoreValue.innerHTML = valueTotalScore
+  movesValue.innerHTML = movementValue
+  
+  
 }
+
+
+
+
+
+// Event listener para gestionar el clic en las cartas
+ul.addEventListener('click', (event) => {
+  const target = event.target.closest('.card');
+  if (target) {
+      voltearCarta(target);
+  }
+});
+
+
