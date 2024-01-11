@@ -195,10 +195,10 @@ function startGame() {
     }
     const levelEasy = document.querySelector('.level1');
     levelEasy.addEventListener('click', easy());
-    // Oculto la cuenta atrás de memorizar y agrego un margen para que no quede raro a la hora de la ocultació
-    setTimeout(() => {
-      document.querySelector('.bar-container').style.display = 'none';
-      document.querySelector('main').style.marginBottom = '120px';
-    }, 14000);
   }
 }
+// Oculto la cuenta atrás de memorizar y agrego un margen para que no quede raro a la hora de la ocultació
+setTimeout(() => {
+  document.querySelector('h1').style.marginBottom = '120px';
+  document.querySelector('.bar-container').style.display = 'none';
+}, 14000);

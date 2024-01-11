@@ -7,17 +7,11 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,700&family=Kalnia:wght@500&display=swap" rel="stylesheet" />
-    <link rel="stylesheet" href="./style.css" />  <!-- Aqui el css -->
+    <link rel="stylesheet" href="/Proyecto/style.css" />  <!-- Aqui el css -->
     <title>Juego de memoria</title>
 </head>
 <body>
    
-
-    <!--sección barra de tiempo -->
-    <section class="bar-container">
-        <hr class="bar">
-    </section>
-
     <!-- sección modal -->
     <div class="modal">
         <div class="modal-index">
@@ -28,9 +22,7 @@
                 </section>
                 <section id="levelContainer">
                     <h2>Selecciona un Nivel:</h2>
-                    <button class="level level1" onclick="startGame()">Fácil</button>
-                    <a href="#"><button class="level level2" onclick="startGame()">Intermedio</button></a>
-                    <a href="#"><button class="level level3" onclick="startGame()">Difícil</button></a>
+                    <button class="level level1" onclick="startGame()">Empezar</button>
                 </section>
             </div>
             <div class="modal-countdown">
@@ -39,16 +31,15 @@
             </div>
         </div>
     </div>
-    <h2>Bienvenido al Juego</h2>
 
-    <section id="ranking">
-        <h2>Ranking de Puntuaciones:</h2>
-        <ol id="scoreList"></ol>
-    </section>
-
-
+    
+    
     <header>
         <h1>Juego de Memoria</h1>
+        <!--sección barra de tiempo -->
+        <section class="bar-container">
+            <hr class="bar">
+        </section>
     </header>
     
     <!--  sección main de cartas -->
@@ -58,14 +49,18 @@
                 <!-- las cartas van aqui -->
             </ul>
         </section>
-
+        
         <!-- sección de puntación -->
         <section id="puntuacionContainer">
-        <h2 id="currentScore">Puntuación: <span id="scoreValue"></span></h2>
-        
-        <h2 id="movimientos" >Movimientos:<span id="movesValue"></span></h2>
-       
+            <h2 id="currentScore">Puntuación: <span id="scoreValue"></span></h2>
+            
+            <h2 id="movimientos" >Movimientos:<span id="movesValue"></span></h2>
+            
         <section>
+        <section id="ranking">
+            <h2>Ranking de Puntuaciones:</h2>
+            <ol id="scoreList"></ol>
+        </section>
     </main>
 
 <!-- sección modal final del juego -->
@@ -81,6 +76,6 @@
     </section>
 </section>
 
-    <script src="./main.js"></script>
+    <script src="/Proyecto/main.js"></script>
 </body>
 </html>
