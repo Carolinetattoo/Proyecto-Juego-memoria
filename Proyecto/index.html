@@ -7,7 +7,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,700&family=Kalnia:wght@500&display=swap" rel="stylesheet" />
-    <link rel="stylesheet" href="/style.css" />  <!-- Aqui el css -->
+    <link rel="stylesheet" href="./style.css" />  <!-- Aqui el css -->
     <title>Juego de memoria</title>
 </head>
 <body>
@@ -41,26 +41,11 @@
     </div>
     <h2>Bienvenido al Juego</h2>
 
-    <!-- sección de inico del juego -->
-    <section class="started-container"> <!-- E cambiado la clase container  por started-Container -->
-        <form id="nickNameContainer">
-            <label for="nickname">Type Name to Start:
-                <input type="text" id="nickname" name="nickname" placeholder="Player Name" />
-            </label>
-        </form>
-    
-        <section id="levelContainer">
-            <h2>Selecciona <br> un Nivel:</h2>
-                <button class="level level1" type="submit" form="nickNameContainer" onclick="startGame('Fácil')">Fácil</button>
-                <button class="level level2" type="submit" form="nickNameContainer" onclick="startGame('Intermedio')">Intermedio</button>
-                <button class="level level3" type="submit" form="nickNameContainer" onclick="startGame('Difícil')">Difícil</button>
-        </section>
-    
-        <article id="ranking">
-            <h2>Ranking de Puntuaciones:</h2>
-            <ol id="scoreList"></ol>
-        </article>
+    <section id="ranking">
+        <h2>Ranking de Puntuaciones:</h2>
+        <ol id="scoreList"></ol>
     </section>
+
 
     <header>
         <h1>Juego de Memoria</h1>
@@ -96,6 +81,6 @@
     </section>
 </section>
 
-    <script src="/main.js"></script>
+    <script src="./main.js"></script>
 </body>
 </html>
