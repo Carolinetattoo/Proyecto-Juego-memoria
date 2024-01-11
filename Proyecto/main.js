@@ -156,4 +156,49 @@ ul.addEventListener('click', (event) => {
   }
 });
 
-
+// Modal para iniciar el juego
+function startGame() {
+  const nickname = document.querySelector('#nickname').value;
+  const nick = document.querySelector('#nickNameContainer');
+  if (nickname.trim() === '') {
+    const errorNick = document.createElement('p');
+    errorNick.classList.add('error-color');
+    errorNick.innerText = '* Por favor, introduce un Nick.';
+    nick.appendChild(errorNick);
+  } else {
+    // Oculto ingreso de nick + nivel y muestro cuenta atrás para empezar
+    const index1 = document.querySelector('.index1');
+    const modalCountdown = document.querySelector('.modal-countdown');
+    index1.style.display = 'none';
+    modalCountdown.style.display = 'block';
+    // Cuenta atrás del modal
+    let counter = 4;
+    const countdown = setInterval(() => {
+      const modalP = document.querySelector('.countdown');
+      counter--;
+      modalP.innerText = counter;
+    }, 1000);
+    // Paro la cuenta atrás del modal
+    function stopCountdown() {
+        clearInterval(countdown);
+    }
+    setTimeout(stopCountdown, 4000);
+    // Oculto el modal y muestro los emojis de las cartas
+    setTimeout(() => {
+        const modal = document.querySelector('.modal');
+        modal.style.display = 'none';
+    }, 4000);
+    // Asigno los niveles
+    function easy() {
+      const barEasy = document.querySelector('.bar');
+      barEasy.classList.add('bar-lv1');
+    }
+    const levelEasy = document.querySelector('.level1');
+    levelEasy.addEventListener('click', easy());
+    // Oculto la cuenta atrás de memorizar y agrego un margen para que no quede raro a la hora de la ocultació
+    setTimeout(() => {
+      document.querySelector('.bar-container').style.display = 'none';
+      document.querySelector('main').style.marginBottom = '120px';
+    }, 14000);
+  }
+}

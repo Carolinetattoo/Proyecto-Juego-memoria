@@ -9,6 +9,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,700&family=Kalnia:wght@500&display=swap" rel="stylesheet">
+</head>
 <body>
 
 <h1>Bienvenido al Juego</h1>
@@ -20,16 +21,15 @@
    
     <section id="levelContainer">
         <h2>Selecciona <br> un Nivel:</h2>
-        <a href="file:///Users/carolinadominguezrodriguez/Documents/HACKABOSS/Poryecto%20juego%20de%20memoria/Proyecto-Juego-memoria./juego.html"><button class="level level1" onclick="startGame('Fácil')">Fácil</button></a>
-        <a href="file:///Users/carolinadominguezrodriguez/Documents/HACKABOSS/Poryecto%20juego%20de%20memoria/Proyecto-Juego-memoria./juego.html"><button class="level level2" onclick="startGame('Intermedio')">Intermedio</button></a>
-        <a href="file:///Users/carolinadominguezrodriguez/Documents/HACKABOSS/Poryecto%20juego%20de%20memoria/Proyecto-Juego-memoria./juego.html"><button class="level level3" onclick="startGame('Difícil')">Difícil</button></a>
+        <a href="./juego.html"><button class="level level1" onclick="startGame('Fácil')">Fácil</button></a>
+        <a href="./juego.html"><button class="level level2" onclick="startGame('Intermedio')">Intermedio</button></a>
+        <a href="./juego.html"><button class="level level3" onclick="startGame('Difícil')">Difícil</button></a>
     </section>
 
-
     <div id="ranking">
-    <h2>Ranking de Puntuaciones:</h2>
-    <ol id="scoreList"></ol>
-</div>
+        <h2>Ranking de Puntuaciones:</h2>
+        <ol id="scoreList"></ol>
+    </div>
 </div>
 <script>
     function startGame(level) {
