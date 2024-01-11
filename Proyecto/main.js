@@ -1,86 +1,111 @@
 'use strict';
+// Cuenta atrás del modal
+let counter = 4;
+const countdown = setInterval(() => {
+    const modalP = document.querySelector('.countdown');
+    counter--;
+    modalP.innerText = counter;
+}, 1000);
+// Paro la cuenta atrás del modal
+function stopCountdown() {
+    clearInterval(countdown);
+}
+const timeoutCountdown = setTimeout(stopCountdown, 4000);
+// Oculto el modal
+setTimeout(() => {
+    const modal = document.querySelector('.modal');
+    modal.style.display = 'none';
+}, 4000)
+// Oculto la cuenta atrás de memorizar y agrego un margen para que no quede raro a la hora de la ocultació
+setTimeout(() => {
+    document.querySelector('.bar-container').style.display = 'none';
+    document.querySelector('main').style.marginBottom = '120px';
+}, 14000);
+// Asigno los niveles
+function easy() {
+    const barEasy = document.querySelector('.bar');
+    barEasy.classList.add('bar-lv1');
+}
+document.addEventListener('load', easy());
 
-/* Guardamos el nombre en el localstorage */
-const form = document.querySelector('#nickNameContainer');
 
-form.addEventListener('submit', (e) => {
-    e.preventDefault();
-    
-    const username = document.querySelector('#nickname').value;
-    localStorage.setItem('user', username);
-});
+let untapped = 0;
+const totalButtons = 16;
 
-const ul = document.querySelector('ul#game'); // Reemplaza 'tu-ul' con el ID real de tu ul
-const tiempoInicio = 5000; // 3 segundos de tiempo de inicio
+// Randomizador
+let cards = {
+    1: 'assets/emoji1.jpg',
+    2: 'assets/emoji2.jpg',
+    3: 'assets/emoji3.jpg',
+    4: 'assets/emoji4.jpg',
+    5: 'assets/emoji5.jpg',
+    6: 'assets/emoji6.jpg',
+    7: 'assets/emoji7.jpg',
+    8: 'assets/emoji8.jpg',
+    9: 'assets/emoji1.jpg',
+    10: 'assets/emoji2.jpg',
+    11: 'assets/emoji3.jpg',
+    12: 'assets/emoji4.jpg',
+    13: 'assets/emoji5.jpg',
+    14: 'assets/emoji6.jpg',
+    15: 'assets/emoji7.jpg',
+    16: 'assets/emoji8.jpg',
+};
 
-// Array de imágenes
-const imagenes = [
-	'assets/emoji1.png',
-    'assets/emoji2.png',
-    'assets/emoji3.png',
-    'assets/emoji4.png',
-    'assets/emoji5.png',
-    'assets/emoji6.png',
-    'assets/emoji7.png',
-    'assets/emoji8.png',
-    'assets/emoji1.png',
-    'assets/emoji2.png',
-    'assets/emoji3.png',
-    'assets/emoji4.png',
-    'assets/emoji5.png',
-    'assets/emoji6.png',
-    'assets/emoji7.png',
-    'assets/emoji8.png',
-];
+let cardsArray = Object.entries(cards);
+cardsArray.sort(() => Math.random() - 0.5);
 
-// Función para desordenar el array
-function shuffleArray(array) {
-	return array.sort(() => Math.random() - 0.5);
+// Ponemos cada uno de los resultados en cada uno de los botones
+let buttonResultsMap = {};
+for (let i = 0; i < totalButtons; i++) {
+    const buttonId = i + 1;
+    const cardEntry = cardsArray[i];
+    buttonResultsMap[buttonId] = cardEntry[1];
 }
 
-// Función para renderizar las cartas en el tablero
-function renderizarCartas(array) {
-	ul.innerHTML = ''; // Limpiar el contenido del ul
 
-	const fragment = document.createDocumentFragment(); // Crear un fragmento para agregar los li
-
-	array.forEach((element, index) => {
-		const li = document.createElement('li');
-		li.classList.add('card', 'flipped'); // Añadir las clases 'card' y 'flipped' al li
-		li.id = index; // Asignar una ID autoincrementada
-
-		li.innerHTML = `
-                    <div class="content"> 
-                    <img class="front" src="/assets/imagen-reverso.jpg"></img>
-                    <div class="back"><img src="${element}" alt="Card"></div>
-                    </div>`;
-
-		fragment.append(li);
-	});
-
-	ul.appendChild(fragment);
-};
+// untap
+function untap(buttonId) {
+    untapped++;
 
 
-// Función para iniciar el juego
-function iniciarJuego() {
-	setTimeout(() => {
-		const cartas = document.querySelectorAll('.card');
-		cartas.forEach((carta) => carta.classList.remove('flipped'));
-	}, tiempoInicio);
-};
+    const result = buttonResultsMap[buttonId];
+    console.log(`Botón ${buttonId} seleccionado`);
+    console.log(`Imagen asociada: ${result}`);
+}
 
-ul.addEventListener('click', (e) => {
-    const target = e.target;
 
-    // Si el target es un li
-    if (target.matches('li')) {
-      // Agregar la clase al li
-      target.classList.add('flipped'); // Reemplaza 'tu-clase' con el nombre de la clase que deseas agregar
+untap(1);
+untap(2);
+
+// Función para dar vuelta a las cartas
+function untap(clikedCard) {
+    const card = document.getElementById(clikedCard);
+
+    if (!card.classList.contains('flipped')) {
+        card.classList.add("flipped");
+        flippedCards.push(card);
+
+        if (flippedCards.length === 2) {
+            setTimeout(() => {
+                compareCards();
+            }, 1000);
+        }
     }
-});
+}
 
-shuffleArray(imagenes);
-renderizarCartas(imagenes);
-iniciarJuego();
+// comparar cartas
+function compareCards() {
+    const [card1, card2] = flippedCards;
 
+    if (card1.dataset.card === card2.dataset.card) {
+        
+        card1.classList.remove("flipped");
+        card2.classList.remove("flipped");
+
+    } else {
+        // Aqui va el clasList remove 
+    }
+
+    flippedCards = [];
+}
