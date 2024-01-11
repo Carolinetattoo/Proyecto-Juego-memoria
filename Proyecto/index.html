@@ -15,10 +15,12 @@
         <h1>Juego de Memoria</h1>
     </header>
 
+    <!--sección barra de tiempo -->
     <section class="bar-container">
         <hr class="bar">
     </section>
 
+    <!-- sección modal -->
     <section class="modal">
         <div class="modal-countdown">
             <p class="starting">Empezamos en</p>
@@ -26,21 +28,56 @@
         </div>
     </section>
     
+    <h2>Bienvenido al Juego</h2>
 
+    <!-- sección de inico del juego -->
+    <section class="started-container"> <!-- E cambiado la clase container  por started-Container -->
+        <form id="nickNameContainer">
+            <label for="nickname">Type Name to Start:
+                <input type="text" id="nickname" name="nickname" placeholder="Player Name" />
+            </label>
+        </form>
+    
+        <section id="levelContainer">
+            <h2>Selecciona <br> un Nivel:</h2>
+                <button class="level level1" type="submit" form="nickNameContainer" onclick="startGame('Fácil')">Fácil</button>
+                <button class="level level2" type="submit" form="nickNameContainer" onclick="startGame('Intermedio')">Intermedio</button>
+                <button class="level level3" type="submit" form="nickNameContainer" onclick="startGame('Difícil')">Difícil</button>
+        </section>
+    
+        <article id="ranking">
+            <h2>Ranking de Puntuaciones:</h2>
+            <ol id="scoreList"></ol>
+        </article>
+    </section>
+    
+    <!--  sección main de cartas -->
     <main id="container">
-        <!--  sección de cartas -->
         <section>
             <ul id="game" >
                 <!-- las cartas van aqui -->
             </ul>
         </section>
 
-        <!-- Sección de puntación -->
+        <!-- sección de puntación -->
         <section id="puntuacionContainer">
             <h2 id="aciertos" class="estadisticas">Aciertos:<br> 0</h2>
             <h2 id="movimientos" class="estadisticas">Movimientos:<br>0</h2>
         <section>
     </main>
+
+<!-- sección modal final del juego -->
+<section class="modalFinal">
+    <button id="" onclick="openModal()">¿Quieres volver a jugar?</button>
+    <section id="modalNiveles">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal()">&times;</span>
+            <button class="level-button" onclick="startGame('inicial')">Nivel Inicial</button>
+            <button class="level-button" onclick="startGame('intermedio')">Nivel Intermedio</button>
+            <button class="level-button" onclick="startGame('dificil')">Nivel Difícil</button>
+        </div>
+    </section>
+</section>
 
     <script src="/main.js"></script>
 </body>
