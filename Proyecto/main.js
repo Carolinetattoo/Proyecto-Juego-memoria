@@ -1,5 +1,5 @@
 const ul = document.querySelector('ul#game'); // Reemplaza 'tu-ul' con el ID real de tu ul
-const tiempoInicio = 5000; // 3 segundos de tiempo de inicio
+const tiempoInicio = 10000; // 8 segundos de tiempo de inicio
 const flipTime = 1000; // para que cuando fallemos, se sigan viendo durante un segundo las cartas antes de girarlo.
 
 
@@ -51,16 +51,6 @@ function renderizarCartas(array) {
 	ul.appendChild(fragment);
 }
 
-// Función para iniciar el juego
-function iniciarJuego() {
-	setTimeout(() => {
-		const cartas = document.querySelectorAll('.card');
-		cartas.forEach((carta) => carta.classList.remove('flipped'));
-	}, tiempoInicio);
-}
-shuffleArray(imagenes);
-renderizarCartas(imagenes);
-iniciarJuego();
 
 
 
@@ -90,7 +80,9 @@ const bonutsThreshold = 2; // establecemos el tope para los bonus en puntuación
 let scoreNegative = 0;
 let valueTotalScore = 0;
 let movementValue = 0;
-
+let success = 0;
+let nickname = null;
+let scores = null;
 
 function checkMatch() {
   const [card1, card2] = clickedCards;
@@ -102,6 +94,9 @@ function checkMatch() {
       card1.classList.add('matched');
       card2.classList.add('matched');
       scorePositive++;
+      success++;
+
+
       if (scorePositive === 1){
         valueTotalScore +=100;
         movementValue++;
@@ -112,6 +107,18 @@ function checkMatch() {
       } else {
         valueTotalScore +=150;
         movementValue++;
+      }
+      if(success === 8) {
+        const totalScoreModal = document.querySelector('.total-score');
+        const modalResumen = document.querySelector('.modal-resumen');
+        modalResumen.style.display = 'flex';
+        totalScoreModal.innerText = valueTotalScore;
+
+        // Después de actualizar la puntuación del juego, llama a updateRanking
+          updateRanking(nickname, valueTotalScore);
+
+      // Después de actualizar el ranking, llama a displayRanking para mostrar los cambios
+           displayRanking(nickname, valueTotalScore);
       }
 
       
@@ -156,4 +163,84 @@ ul.addEventListener('click', (event) => {
   }
 });
 
+// Modal para iniciar el juego
+function startGame() {
+  nickname = document.querySelector('#nickname').value;
+  const nick = document.querySelector('#nickNameContainer');
+  if (nickname.trim() === '') {
+    const errorNick = document.createElement('p');
+    errorNick.classList.add('error-color');
+    errorNick.innerText = '* Por favor, introduce un Nick.';
+    nick.appendChild(errorNick);
+  } else {
+    // Oculto ingreso de nick + nivel y muestro cuenta atrás para empezar
+    const index1 = document.querySelector('.index1');
+    const modalCountdown = document.querySelector('.modal-countdown');
+    index1.style.display = 'none';
+    modalCountdown.style.display = 'block';
+    // Cuenta atrás del modal
+    let counter = 4;
+    const countdown = setInterval(() => {
+      const modalP = document.querySelector('.countdown');
+      counter--;
+      modalP.innerText = counter;
+    }, 1000);
+    // Paro la cuenta atrás del modal
+    function stopCountdown() {
+        clearInterval(countdown);
+    }
+    setTimeout(stopCountdown, 4000);
+    // Oculto el modal y muestro los emojis de las cartas
+    setTimeout(() => {
+        const modal = document.querySelector('.modal');
+        modal.style.display = 'none';
+    }, 4000);
+    // Asigno los niveles
+    function easy() {
+      const barEasy = document.querySelector('.bar');
+      barEasy.classList.add('bar-lv1');
+    }
+    const levelEasy = document.querySelector('.level1');
+    levelEasy.addEventListener('click', easy());
 
+  // Función para iniciar el juego
+  function iniciarJuego() {
+    setTimeout(() => {
+      const cartas = document.querySelectorAll('.card');
+      cartas.forEach((carta) => carta.classList.remove('flipped'));
+    }, tiempoInicio);
+  }
+  shuffleArray(imagenes);
+  renderizarCartas(imagenes);
+  iniciarJuego();
+
+  setTimeout(() => {
+    document.querySelector('h1').style.marginBottom = '120px';
+    document.querySelector('.bar-container').style.display = 'none';
+  }, 10000);
+
+  }
+}
+
+
+
+function updateRanking(nickname, score) {
+  scores = JSON.parse(localStorage.getItem('scores')) || [];
+  scores.push({ nickname, valueTotalScore });
+  localStorage.setItem('scores', JSON.stringify(scores));
+}
+
+function displayRanking() {
+  const scoreList = document.getElementById('scoreList');
+  scoreList.innerHTML = '';
+
+  scores = JSON.parse(localStorage.getItem('scores')) || [];
+
+  scores.sort((a, b) => b.score - a.score); // Ordenar por puntuación descendente
+
+  scores.slice(0, 5).forEach(entry => {
+      const listItem = document.createElement('li');
+      listItem.textContent = `${entry.nickname}: ${entry.valueTotalScore} puntos`;
+      scoreList.appendChild(listItem);
+  });
+};
