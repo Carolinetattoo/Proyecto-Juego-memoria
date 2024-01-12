@@ -65,22 +65,26 @@
 
 <!-- sección modal final del juego -->
 
-<section class="modal-resumen">
+<section class="modal-resumen" id="miSeccion">
+    <div class="modalRetry"></div>
     <section class="modal-index">
+
         <section id="modalScoreRetry">
             <h2>Tu puntuación es:</h2>
             <p class="total-score"></p>
         </section>
-        <section id="modalNiveles">
+        <section id="modalRetry">
             <h3>¿Quieres volver a jugar?</h3>
-            <button class="level level1" onclick="startGame()">Empezar</button>
+            <button class="level level1" onclick="retryGame()">Empezar</button>
         </section>
         <div class="modal-countdown">
             <p class="starting">Empezamos en</p>
             <p class="countdown"></p>
 
         </div>
+
     </section>
+</div>
 </section>
 
     <script src="main.js"></script>

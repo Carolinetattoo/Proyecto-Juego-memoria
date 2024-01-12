@@ -83,6 +83,7 @@ let movementValue = 0;
 let success = 0;
 let nickname = null;
 let scores = null;
+const miSection = document.getElementById('miSeccion')
 
 function checkMatch() {
   const [card1, card2] = clickedCards;
@@ -109,10 +110,15 @@ function checkMatch() {
         movementValue++;
       }
       if(success === 8) {
+
         const totalScoreModal = document.querySelector('.total-score');
         const modalResumen = document.querySelector('.modal-resumen');
         modalResumen.style.display = 'flex';
         totalScoreModal.innerText = valueTotalScore;
+        
+
+
+
 
         // Después de actualizar la puntuación del juego, llama a updateRanking
           updateRanking(nickname, valueTotalScore);
@@ -154,7 +160,6 @@ function checkMatch() {
 displayRanking()
 
 
-
 // Event listener para gestionar el clic en las cartas
 ul.addEventListener('click', (event) => {
   const target = event.target.closest('.card');
@@ -163,6 +168,29 @@ ul.addEventListener('click', (event) => {
   }
 });
 
+
+
+//Modal Retry
+function retryGame(){
+  valueTotalScore = 0;
+  movementValue = 0;
+  updateRanking()
+  startGame()
+nick = document.querySelector('#nickNameContainer');
+const modalRetry = document.querySelector('.modalRetry');
+miSection.style.display="none";
+document.querySelector('.bar-container').style.display = 'block';
+setTimeout(() => {
+  document.querySelector('h1').style.marginBottom = '120px';
+  barEasy.classList.add('bar-lv2');
+  document.querySelector('.bar-container').style.display = 'none';
+}, 10000);
+
+const levelEasy = document.querySelector('.level1');
+levelEasy.addEventListener('click', easy());
+
+
+}
 // Modal para iniciar el juego
 function startGame() {
   nickname = document.querySelector('#nickname').value;
@@ -209,6 +237,7 @@ function startGame() {
       const cartas = document.querySelectorAll('.card');
       cartas.forEach((carta) => carta.classList.remove('flipped'));
     }, tiempoInicio);
+
   }
   shuffleArray(imagenes);
   renderizarCartas(imagenes);
@@ -221,6 +250,8 @@ function startGame() {
 
   }
 }
+
+
 
 //Función del ranking
 
