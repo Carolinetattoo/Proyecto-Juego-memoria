@@ -151,7 +151,7 @@ function checkMatch() {
   
 }
 
-
+displayRanking()
 
 
 
@@ -222,7 +222,7 @@ function startGame() {
   }
 }
 
-
+//Función del ranking
 
 function updateRanking(nickname, score) {
   scores = JSON.parse(localStorage.getItem('scores')) || [];
@@ -236,7 +236,7 @@ function displayRanking() {
 
   scores = JSON.parse(localStorage.getItem('scores')) || [];
 
-  scores.sort((a, b) => b.score - a.score); // Ordenar por puntuación descendente
+  scores.sort((a, b) => b.valueTotalScore - a.valueTotalScore); // Ordenar por puntuación descendente
 
   scores.slice(0, 5).forEach(entry => {
       const listItem = document.createElement('li');
