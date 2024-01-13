@@ -125,6 +125,8 @@ function checkMatch() {
 
       // Después de actualizar el ranking, llama a displayRanking para mostrar los cambios
            displayRanking(nickname, valueTotalScore);
+
+           success = 0
       }
 
       
