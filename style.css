@@ -347,9 +347,14 @@ button::after {
   animation: timer 7s;
   animation-delay: 4s;
 }
-.bar-lv2 {
-  /* animation: timer 5s; */
-  /* animation-delay: 4s; */
+/* acireto en las parejas */
+.accept {
+  animation: cards 0.4s alternate ease-in;
+}
+@keyframes cards {
+  0% {transform: scale(1); }
+  50% {transform: scale(1.5); }
+
 }
 
 @keyframes timer {

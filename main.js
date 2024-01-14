@@ -2,8 +2,6 @@ const ul = document.querySelector('ul#game'); // Reemplaza 'tu-ul' con el ID rea
 const tiempoInicio = 10000; // 8 segundos de tiempo de inicio
 const flipTime = 1000; // para que cuando fallemos, se sigan viendo durante un segundo las cartas antes de girarlo.
 
-
-
 // Array de imágenes
 const imagenes = [
 	  'assets/emoji1.png',
@@ -49,15 +47,10 @@ function renderizarCartas(array) {
 	});
 
 	ul.appendChild(fragment);
-}
-
-
-
+};
 
 let block = false;
 let clickedCards = []
-
-
 
 
 //Función para darle la vuelta a una carta
@@ -71,7 +64,7 @@ function voltearCarta(carta) {
           setTimeout(() => checkMatch(), flipTime);
       }
   }
-}
+};
 
 
 // Función para comprobar si las cartas coinciden
@@ -94,9 +87,11 @@ function checkMatch() {
   if (content1 === content2) {
       card1.classList.add('matched');
       card2.classList.add('matched');
+      // Animación de acuertos
+      card1.classList.toggle('accept');
+      card2.classList.toggle('accept');
       scorePositive++;
       success++;
-
 
       if (scorePositive === 1){
         valueTotalScore +=100;
@@ -117,21 +112,17 @@ function checkMatch() {
         totalScoreModal.innerText = valueTotalScore;
         
 
-
-
-
         // Después de actualizar la puntuación del juego, llama a updateRanking
           updateRanking(nickname, valueTotalScore);
 
       // Después de actualizar el ranking, llama a displayRanking para mostrar los cambios
-           displayRanking(nickname, valueTotalScore);
+          displayRanking(nickname, valueTotalScore);
 
           success = 0;
           scorePositive = 0;
           valueTotalScore = 0;
           movementValue = 0;
       }
-
       
   } else {
       card1.classList.remove('flipped');
@@ -148,22 +139,17 @@ function checkMatch() {
           valueTotalScore -=30;
           movementValue++;
         }
-  
   }
- 
 
   clickedCards = [];
   block = false;
 
-  
   scoreValue.innerHTML = valueTotalScore
   movesValue.innerHTML = movementValue
   
-  
-}
+};
 
 displayRanking()
-
 
 // Event listener para gestionar el clic en las cartas
 ul.addEventListener('click', (event) => {
@@ -174,21 +160,18 @@ ul.addEventListener('click', (event) => {
 });
 
 
-
 //Modal Retry
 function retryGame(){
   movementValue = 0;
   startGame()
-nick = document.querySelector('#nickNameContainer');
-const modalRetry = document.querySelector('.modalRetry');
-miSection.style.display="none";
-document.querySelector('.bar-container').style.display = 'block';
+  nick = document.querySelector('#nickNameContainer');
+  const modalRetry = document.querySelector('.modalRetry');
+  miSection.style.display="none";
+  document.querySelector('.bar-container').style.display = 'block';
 
-const levelEasy = document.querySelector('.level1');
+  const levelEasy = document.querySelector('.level1');
 
-
-
-}
+};
 // Modal para iniciar el juego
 function startGame() {
   nickname = document.querySelector('#nickname').value;
@@ -249,10 +232,7 @@ function startGame() {
   }
 }
 
-
-
 //Función del ranking
-
 function updateRanking(nickname, score) {
   scores = JSON.parse(localStorage.getItem('scores')) || [];
   scores.push({ nickname, valueTotalScore });
