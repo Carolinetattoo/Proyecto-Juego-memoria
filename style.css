@@ -271,6 +271,7 @@ img:hover {
   font-size: 120px;
   margin: auto;
   height: 120px;
+  
 }
 .error-color {
   color: red;
@@ -281,6 +282,7 @@ img:hover {
   height: 400px;
   margin-top: 120px;
   text-align: center;
+  
   
 }
 /*Estilo boton modal*/
@@ -452,4 +454,23 @@ button::after {
  #scoreList {
   font-size: 16px;
  }
+}
+
+/* estilos del ranking*/
+
+#h1Ranking {
+  border: 1px solid rgb(22, 41, 47);
+  border-radius: 10px;
+  box-shadow: 5px -2px 20px rgb(52, 163, 150);
+  width: 200px;
+  height: 100px;
+  text-align: center;
+  padding: 10px;
+  margin-bottom: 20px;
+}
+
+#scoreList {
+  color: rgb(117, 165, 151);
+  font-size: 16px;
+  margin-left: 30px;
 }
