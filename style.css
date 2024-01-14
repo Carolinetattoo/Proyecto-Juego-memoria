@@ -25,7 +25,6 @@ h1 {
   color:rgb(252, 234, 186); 
   text-shadow: 4px 4px 10px black;
   transition: 1s ease;
-  
 }
 
 h1:hover {
@@ -34,40 +33,34 @@ h1:hover {
 }
 
 h2 {
-
   text-align: center;
   font-size: 20px;
   color:rgb(252, 234, 186); 
 }
 
-
 #container {
-display: flex;
-justify-content: space-around;
-align-items: center;
-max-width: 1400px;
-min-width: 900px;
-
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  max-width: 1400px;
+  min-width: 900px;
 }
 
 #puntuacionContainer {
- width: 200px;
- height: 300px;
- 
+  width: 200px;
+  height: 300px;
 }
 
 #currentScore , #movimientos{
-border: 1px solid rgb(22, 41, 47);
-border-radius: 10px;
-box-shadow: 5px -2px 20px rgb(52, 163, 150);
-width: 200px;
-height: 100px;
-text-align: center;
-padding: 10px;
-margin-bottom: 20px;
+  border: 1px solid rgb(22, 41, 47);
+  border-radius: 10px;
+  box-shadow: 5px -2px 20px rgb(52, 163, 150);
+  width: 200px;
+  height: 100px;
+  text-align: center;
+  padding: 10px;
+  margin-bottom: 20px;
 }
-
-
 
 #game {
   width: 330px;
@@ -83,8 +76,6 @@ margin-bottom: 20px;
   width: 110px;
   height: 110px;
   perspective: 1000px;
-  
-  
 }
 
 .modalFinal {
@@ -112,8 +103,6 @@ margin-bottom: 20px;
   width: 400px;
   height: 300px;
   border-radius: 40px; 
-  
-  
 }
 
 .level-button {
@@ -129,14 +118,12 @@ margin-bottom: 20px;
   height: 100%;
   transform-style: preserve-3d;
   transition: transform 0.5s;
-  
 }
 
 .card.flipped .content {
   transform: rotateY(180deg);
+  transition: 0.5s;
 }
-
-
 
 .front,
 .back {
@@ -147,17 +134,12 @@ margin-bottom: 20px;
   justify-content: center;
   align-items: center;
   font-size: 24px;
- /* background: linear-gradient(black, gray); esta linea creo que no es necesaria*/
   backface-visibility: hidden;
 }
 
 .back {
   transform: rotateY(180deg);
-  /* background-size: cover;
-  background-position: center; */
-  /*background: linear-gradient(steelblue, lightsteelblue);esta linea creo que no es necesaria*/
-  
-  
+  transition: 0.5s;
 }
 
 
@@ -170,9 +152,9 @@ img {
 }
 
 img:hover {
- transform: scale(110%);
- border: 1px solid rgba(255, 255, 255, 0.891);
- box-shadow: 4px 4px 10px rgb(255, 232, 173);
+  transform: scale(110%);
+  border: 1px solid rgba(255, 255, 255, 0.891);
+  box-shadow: 4px 4px 10px rgb(255, 232, 173);
 }
 
 /* Estilos del modal */
@@ -271,7 +253,6 @@ img:hover {
   font-size: 120px;
   margin: auto;
   height: 120px;
-  
 }
 .error-color {
   color: red;
@@ -282,8 +263,7 @@ img:hover {
   height: 400px;
   margin-top: 120px;
   text-align: center;
-  
-  
+  padding: 100px;
 }
 /*Estilo boton modal*/
 
@@ -331,11 +311,6 @@ button::after {
   }
 }
 
-
-
-
-
-
 /* Estilos de barra cuenta atrás */
 .bar-container {
   width: 100%;
@@ -375,12 +350,12 @@ button::after {
 
 @media (width < 900px) {
   #container {
-    max-width: 800px;
-    min-width: 600px; 
-    gap: 7px; 
-    display: flex;
-    justify-content: space-between;
-    align-items: start;
+  max-width: 800px;
+  min-width: 600px; 
+  gap: 7px; 
+  display: flex;
+  justify-content: space-between;
+  align-items: start;
 }
 #game {
   width: 230px;
@@ -396,31 +371,30 @@ button::after {
   height: 150px;
   margin-top: 70px;
   
- }
- h1 {
-  font-size: 40px;
- }
+  }
+  h1 {
+    font-size: 40px;
+  }
 
- h2 {
-  font-size: 16px;
- }
- #ranking {
-  width: 100px;
+  h2 {
+    font-size: 16px;
+  }
+  #ranking {
+    width: 100px;
 
- }
- #scoreList {
-  font-size: 16px;
- }
+  }
+  #scoreList {
+    font-size: 16px;
+  }
 }
 
 @media (width < 700px) {
   #container {
-    margin-top: 0;
-    max-width: 600px;
-    min-width: 500px; 
-    display: flex;
-    flex-direction: column;
-   
+  margin-top: 0;
+  max-width: 600px;
+  min-width: 500px; 
+  display: flex;
+  flex-direction: column;
 }
 #game {
   width: 230px;
@@ -437,23 +411,23 @@ button::after {
   height: 150px;
   margin-top: 100px;
   
- }
- h1 {
- margin-top: 200px;
-  font-size: 50px;
- }
+  }
+  h1 {
+  margin-top: 200px;
+    font-size: 50px;
+  }
 
- h2 {
-  font-size: 16px;
- }
- #ranking {
-  width: 80px;
-  margin-left: 50px;
+  h2 {
+    font-size: 16px;
+  }
+  #ranking {
+    width: 80px;
+    margin-left: 50px;
 
- }
- #scoreList {
-  font-size: 16px;
- }
+  }
+  #scoreList {
+    font-size: 16px;
+  }
 }
 
 /* estilos del ranking*/
