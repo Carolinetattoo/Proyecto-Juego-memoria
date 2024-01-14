@@ -182,14 +182,9 @@ nick = document.querySelector('#nickNameContainer');
 const modalRetry = document.querySelector('.modalRetry');
 miSection.style.display="none";
 document.querySelector('.bar-container').style.display = 'block';
-setTimeout(() => {
-  document.querySelector('h1').style.marginBottom = '120px';
-  barEasy.classList.add('bar-lv2');
-  document.querySelector('.bar-container').style.display = 'none';
-}, 10000);
 
 const levelEasy = document.querySelector('.level1');
-levelEasy.addEventListener('click', easy());
+
 
 
 }
