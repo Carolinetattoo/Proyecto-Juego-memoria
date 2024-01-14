@@ -35,6 +35,7 @@ Este sistema tambien te penaliza si fallas. La primera vez son menos 10 puntos, 
 - HTML
 - CSS
 - JavaScript
+- Procreate
 
 ## Autores
 
