@@ -126,7 +126,10 @@ function checkMatch() {
       // Después de actualizar el ranking, llama a displayRanking para mostrar los cambios
            displayRanking(nickname, valueTotalScore);
 
-           success = 0
+          success = 0;
+          scorePositive = 0;
+          valueTotalScore = 0;
+          movementValue = 0;
       }
 
       
@@ -174,9 +177,7 @@ ul.addEventListener('click', (event) => {
 
 //Modal Retry
 function retryGame(){
-  valueTotalScore = 0;
   movementValue = 0;
-  updateRanking()
   startGame()
 nick = document.querySelector('#nickNameContainer');
 const modalRetry = document.querySelector('.modalRetry');
