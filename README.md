@@ -16,7 +16,8 @@ Este es un juego de memoria desarrollado en HTML, CSS y JavaScript. El juego con
 - **Juego de Memoria:** El jugador debe destapar las cartas de a dos. Si las cartas tienen el mismo emoji, se mantienen destapadas. En caso contrario, se vuelven a ocultar
   después de10 segundos (Nivel 1), siete segundos (Nivel 2) o cinco segundos (Nivel 3)
 
-- **Puntuación:** ********************************************************************************************
+- **Puntuación:** El sistema de puntuacion te puntua con 100 puntos si aciertas una vez y con 125 si aciertas dos veces consecutivas y a partir de la tercera vez consecutiva, siempre te sumará 150 puntos mas.  
+Este sistema tambien te penaliza si fallas. La primera vez son menos 10 puntos, segunda vez consecutiva menos 20 puntos y a partir de la tercera vez consecutiva con menos 30 puntos. 
   
 - **Ranking:** Después de completar el juego, se muestra un ranking de las mejores puntuaciones, que se almacenan localmente en el navegador.
 
