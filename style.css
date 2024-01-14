@@ -3,9 +3,7 @@
   margin: 0;
   box-sizing: border-box;
   background-color: rgb(22, 41, 47);
-  font-family: 'Fraunces', serif;
-  font-family: 'Kalnia', serif;
-
+  font-family: 'Fraunces','Kalnia', serif;
 }
 
 body {
@@ -15,6 +13,9 @@ body {
   align-items: center;
   height: 100vh;
   margin: 0;
+}
+header {
+  height: 200px;
 }
 
 h1 {
@@ -241,7 +242,7 @@ img:hover {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  margin-top: 50px;
+  margin-top: 120px;
   gap: 20px;
   border-radius: 60px;
   box-shadow: 7px 7px 10px black;
@@ -278,6 +279,7 @@ img:hover {
   display: none;
   width: 400px;
   height: 400px;
+  margin-top: 120px;
   text-align: center;
   
 }
