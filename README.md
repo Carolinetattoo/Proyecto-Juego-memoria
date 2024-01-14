@@ -24,18 +24,11 @@ Este sistema tambien te penaliza si fallas. La primera vez son menos 10 puntos, 
 ## Instrucciones de Uso
 
 1. Ingresa tu NickName.
-2. Selecciona un nivel de dificultad.
-3. Juega destapando las cartas.
-4. Intenta completar el juego con la menor cantidad de intentos posible.
-5. Después de completar el juego, observa tu posición en el ranking.
+2. Juega destapando las cartas.
+3. Intenta completar el juego con la menor cantidad de intentos posible.
+4. Después de completar el juego, observa tu posición en el ranking.
+5. Al finalizar la partida se te pregunta si quieres volver a jugar!
 
-## Ejecución del Juego
-
-******************************
-
-## Personalización
-
-********************
 
 ## Tecnologías Utilizadas
 
@@ -44,6 +37,12 @@ Este sistema tambien te penaliza si fallas. La primera vez son menos 10 puntos, 
 - JavaScript
 
 ## Autores
+
+Daniel Montero Castro 
+Eduardo Martinez 
+David Fuertes Rojas 
+Manoli García
+Carolina Dominguez 
 
 
 
