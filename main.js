@@ -4,22 +4,22 @@ const flipTime = 1000; // para que cuando fallemos, se sigan viendo durante un s
 
 // Array de imágenes
 const imagenes = [
-	  'assets/emoji1.png',
-    'assets/emoji2.png',
-    'assets/emoji3.png',
-    'assets/emoji4.png',
-    'assets/emoji5.png',
-    'assets/emoji6.png',
-    'assets/emoji7.png',
-    'assets/emoji8.png',
-    'assets/emoji1.png',
-    'assets/emoji2.png',
-    'assets/emoji3.png',
-    'assets/emoji4.png',
-    'assets/emoji5.png',
-    'assets/emoji6.png',
-    'assets/emoji7.png',
-    'assets/emoji8.png',
+	  './assets/emoji1.png',
+    './assets/emoji2.png',
+    './assets/emoji3.png',
+    './assets/emoji4.png',
+    './assets/emoji5.png',
+    './assets/emoji6.png',
+    './assets/emoji7.png',
+    './assets/emoji8.png',
+    './assets/emoji1.png',
+    './assets/emoji2.png',
+    './assets/emoji3.png',
+    './assets/emoji4.png',
+    './assets/emoji5.png',
+    './assets/emoji6.png',
+    './assets/emoji7.png',
+    './assets/emoji8.png',
 ];
 
 // Función para desordenar el array
@@ -47,11 +47,10 @@ function renderizarCartas(array) {
 	});
 
 	ul.appendChild(fragment);
-};
+}
 
 let block = false;
-let clickedCards = []
-
+let clickedCards = [];
 
 //Función para darle la vuelta a una carta
 function voltearCarta(carta) {
@@ -69,87 +68,98 @@ function voltearCarta(carta) {
 
 // Función para comprobar si las cartas coinciden
 let scorePositive = 0; 
-const bonutsThreshold = 2; // establecemos el tope para los bonus en puntuación, tanto positivos como negativos, en más de 2 consecutivos.
 let scoreNegative = 0;
 let valueTotalScore = 0;
 let movementValue = 0;
 let success = 0;
 let nickname = null;
 let scores = null;
-const miSection = document.getElementById('miSeccion')
+const modalCountdown = document.querySelector('.modal-countdown');
+const modal = document.querySelector('.modal');
+const modalFinal = document.querySelector('.modal-final');
+const barContainer = document.querySelector('.bar-container');
+const modalP = document.querySelector('.countdown');
+const barEasy = document.querySelector('.bar');
 
 function checkMatch() {
   const [card1, card2] = clickedCards;
   const content1 = card1.querySelector('.back img').src;
   const content2 = card2.querySelector('.back img').src;
- 
 
   if (content1 === content2) {
       card1.classList.add('matched');
       card2.classList.add('matched');
-      // Animación de acuertos
+
+      // Animación de aciertos
       card1.classList.toggle('accept');
       card2.classList.toggle('accept');
+      setTimeout(() => {
+        card1.classList.remove('accept');
+        card2.classList.remove('accept');
+      },1000);
+
+      scoreNegative = 0;
       scorePositive++;
       success++;
 
       if (scorePositive === 1){
-        valueTotalScore +=100;
+        valueTotalScore += 100;
         movementValue++;
-        
-      }else if (scorePositive ===2){
-        valueTotalScore +=125;
+      }else if (scorePositive === 2){
+        valueTotalScore += 125;
         movementValue++;
       } else {
-        valueTotalScore +=150;
+        valueTotalScore += 150;
         movementValue++;
       }
+
       if(success === 8) {
 
         const totalScoreModal = document.querySelector('.total-score');
-        const modalResumen = document.querySelector('.modal-resumen');
-        modalResumen.style.display = 'flex';
+        modal.classList.remove('hide');
+        modalFinal.classList.remove('hide');
+        barEasy.classList.remove('bar-lv1');
+        barContainer.classList.remove('hide');
+        modalP.innerText = null;
         totalScoreModal.innerText = valueTotalScore;
         
-
         // Después de actualizar la puntuación del juego, llama a updateRanking
-          updateRanking(nickname, valueTotalScore);
+        updateRanking(nickname, valueTotalScore);
 
-      // Después de actualizar el ranking, llama a displayRanking para mostrar los cambios
-          displayRanking(nickname, valueTotalScore);
+        // Después de actualizar el ranking, llama a displayRanking para mostrar los cambios
+        displayRanking(nickname, valueTotalScore);
 
-          success = 0;
-          scorePositive = 0;
-          valueTotalScore = 0;
-          movementValue = 0;
+        success = 0;
+        scorePositive = 0;
+        valueTotalScore = 0;
+        movementValue = 0;
       }
-      
+
   } else {
       card1.classList.remove('flipped');
       card2.classList.remove('flipped');
       scorePositive = 0;
       scoreNegative ++; 
-        if (scoreNegative ===1){
-          valueTotalScore -=10;
+        if (scoreNegative === 1){
+          valueTotalScore -= 10;
           movementValue++;
-        }else if (scoreNegative ===2){
-          valueTotalScore -=20;
+        }else if (scoreNegative === 2){
+          valueTotalScore -= 20;
           movementValue++;
         }else {
-          valueTotalScore -=30;
+          valueTotalScore -= 30;
           movementValue++;
         }
+  
   }
 
   clickedCards = [];
   block = false;
 
-  scoreValue.innerHTML = valueTotalScore
-  movesValue.innerHTML = movementValue
+  scoreValue.innerHTML = valueTotalScore;
+  movesValue.innerHTML = movementValue;
   
 };
-
-displayRanking()
 
 // Event listener para gestionar el clic en las cartas
 ul.addEventListener('click', (event) => {
@@ -159,19 +169,6 @@ ul.addEventListener('click', (event) => {
   }
 });
 
-
-//Modal Retry
-function retryGame(){
-  movementValue = 0;
-  startGame()
-  nick = document.querySelector('#nickNameContainer');
-  const modalRetry = document.querySelector('.modalRetry');
-  miSection.style.display="none";
-  document.querySelector('.bar-container').style.display = 'block';
-
-  const levelEasy = document.querySelector('.level1');
-
-};
 // Modal para iniciar el juego
 function startGame() {
   nickname = document.querySelector('#nickname').value;
@@ -184,13 +181,12 @@ function startGame() {
   } else {
     // Oculto ingreso de nick + nivel y muestro cuenta atrás para empezar
     const index1 = document.querySelector('.index1');
-    const modalCountdown = document.querySelector('.modal-countdown');
-    index1.style.display = 'none';
-    modalCountdown.style.display = 'block';
+    index1.classList.add('hide');
+    modalFinal.classList.add('hide');
+    modalCountdown.classList.remove('hide');
     // Cuenta atrás del modal
     let counter = 4;
     const countdown = setInterval(() => {
-      const modalP = document.querySelector('.countdown');
       counter--;
       modalP.innerText = counter;
     }, 1000);
@@ -201,47 +197,45 @@ function startGame() {
     setTimeout(stopCountdown, 4000);
     // Oculto el modal y muestro los emojis de las cartas
     setTimeout(() => {
-        const modal = document.querySelector('.modal');
-        modal.style.display = 'none';
+      modalCountdown.classList.add('hide');
+      modal.classList.add('hide');
     }, 4000);
     // Asigno los niveles
     function easy() {
-      const barEasy = document.querySelector('.bar');
       barEasy.classList.add('bar-lv1');
     }
-    const levelEasy = document.querySelector('.level1');
-    levelEasy.addEventListener('click', easy());
+    easy();
 
-  // Función para iniciar el juego
-  function iniciarJuego() {
+    // Función para iniciar el juego
+    function iniciarJuego() {
+      setTimeout(() => {
+        const cartas = document.querySelectorAll('.card');
+        cartas.forEach((carta) => carta.classList.remove('flipped'));
+      }, tiempoInicio);
+    };
+
+    shuffleArray(imagenes);
+    renderizarCartas(imagenes);
+    iniciarJuego();
+
     setTimeout(() => {
-      const cartas = document.querySelectorAll('.card');
-      cartas.forEach((carta) => carta.classList.remove('flipped'));
+      document.querySelector('h1').style.marginBottom = '120px';
+      barContainer.classList.add('hide');
     }, tiempoInicio);
 
-  }
-  shuffleArray(imagenes);
-  renderizarCartas(imagenes);
-  iniciarJuego();
-
-  setTimeout(() => {
-    document.querySelector('h1').style.marginBottom = '120px';
-    document.querySelector('.bar-container').style.display = 'none';
-  }, 10000);
-
-  }
-}
+  };
+};
 
 //Función del ranking
 function updateRanking(nickname, score) {
   scores = JSON.parse(localStorage.getItem('scores')) || [];
   scores.push({ nickname, valueTotalScore });
   localStorage.setItem('scores', JSON.stringify(scores));
-}
+};
 
 function displayRanking() {
   const scoreList = document.getElementById('scoreList');
-  scoreList.innerHTML = '';
+  scoreList.innerText = '';
 
   scores = JSON.parse(localStorage.getItem('scores')) || [];
 

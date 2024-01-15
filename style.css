@@ -2,11 +2,11 @@
   padding: 0;
   margin: 0;
   box-sizing: border-box;
-  background-color: rgb(22, 41, 47);
   font-family: 'Fraunces','Kalnia', serif;
 }
 
 body {
+  background-color: rgb(22, 41, 47);
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -14,7 +14,9 @@ body {
   height: 100vh;
   margin: 0;
 }
+
 header {
+  position: relative;
   height: 200px;
 }
 
@@ -41,25 +43,32 @@ h2 {
 #container {
   display: flex;
   justify-content: space-around;
-  align-items: center;
   max-width: 1400px;
   min-width: 900px;
 }
 
 #puntuacionContainer {
   width: 200px;
-  height: 300px;
 }
 
-#currentScore , #movimientos{
-  border: 1px solid rgb(22, 41, 47);
+#currentScore , #movimientos, #ranking{
+  background-color: rgb(255, 241, 195);
+  color: rgb(22, 41, 47);
   border-radius: 10px;
-  box-shadow: 5px -2px 20px rgb(52, 163, 150);
   width: 200px;
-  height: 100px;
   text-align: center;
   padding: 10px;
-  margin-bottom: 20px;
+  margin: 20px 0 35px;
+}
+#currentScore , #movimientos {
+  height: 100px;
+}
+#ranking > h2, #scoreList {
+  color: rgb(22, 41, 47);
+}
+#scoreList {
+  margin-top: 10px;
+  list-style: none;
 }
 
 #game {
@@ -80,10 +89,6 @@ h2 {
 
 .modalFinal {
   display: flex;
-}
-
-.modal.hide{
-  display: none;
 }
 
 #miModal {
@@ -133,15 +138,13 @@ h2 {
   display: flex;
   justify-content: center;
   align-items: center;
-  font-size: 24px;
   backface-visibility: hidden;
 }
 
 .back {
+  background-color: rgb(22, 41, 47);
   transform: rotateY(180deg);
-  transition: 0.5s;
 }
-
 
 img {
   width: 100%;
@@ -178,7 +181,6 @@ img:hover {
   height: 800px;
   color:  rgb(252, 234, 186);
   margin: auto;
-  padding: 50px 0;
   background-image: url(assets/imagen-modal.jpg);
   background-size: cover;
   border-radius: 10px;
@@ -215,17 +217,19 @@ img:hover {
 #nickname {
   width: 300px;
   height: 40px;
-  color: rgba(255, 255, 255, 0.683);
+  color: rgb(22, 41, 47);
   text-align: center;
 }
 
-.index1 {
+.index1, .modal-countdown, .modal-final {
+  background-color: rgb(22, 41, 47);
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  margin-top: 120px;
-  gap: 20px;
+  width: 400px;
+  height: 475px;
+  margin: auto;
   border-radius: 60px;
   box-shadow: 7px 7px 10px black;
 }
@@ -238,12 +242,9 @@ img:hover {
   gap: 20px;
   border:none; 
 }
-.modal-resumen{
-  display: none;
-}
+
 .starting {
   font-size: 36px;
-  margin: auto;
 }
 .empty-space {
   height: 120px;
@@ -251,19 +252,10 @@ img:hover {
 .countdown {
   text-align: center;
   font-size: 120px;
-  margin: auto;
   height: 120px;
 }
 .error-color {
   color: red;
-}
-.modal-countdown {
-  display: none;
-  width: 400px;
-  height: 400px;
-  margin-top: 120px;
-  text-align: center;
-  padding: 100px;
 }
 /*Estilo boton modal*/
 
@@ -313,8 +305,9 @@ button::after {
 
 /* Estilos de barra cuenta atrás */
 .bar-container {
+  position: absolute;
+  top: 10rem;
   width: 100%;
-  margin: 50px 16%;
 }
 .bar {
   height: 20px;
@@ -325,15 +318,6 @@ button::after {
 .bar-lv1 {
   animation: timer 7s;
   animation-delay: 4s;
-}
-/* acireto en las parejas */
-.accept {
-  animation: cards 0.4s alternate ease-in;
-}
-@keyframes cards {
-  0% {transform: scale(1); }
-  50% {transform: scale(1.5); }
-
 }
 
 @keyframes timer {
@@ -346,16 +330,29 @@ button::after {
   }
 }
 
+.hide {
+  display: none;
+}
+/* acirtos en las parejas */
+.accept {
+  animation: cards 0.4s alternate ease-in;
+}
+@keyframes cards {
+  0% {transform: scale(1); }
+  50% {transform: scale(1.5); }
+
+}
+
 /*Media query para el responsive*/
 
 @media (width < 900px) {
   #container {
-  max-width: 800px;
-  min-width: 600px; 
-  gap: 7px; 
-  display: flex;
-  justify-content: space-between;
-  align-items: start;
+    max-width: 800px;
+    min-width: 600px; 
+    gap: 7px; 
+    display: flex;
+    justify-content: space-between;
+    align-items: start;
 }
 #game {
   width: 230px;
@@ -369,32 +366,28 @@ button::after {
 #puntuacionContainer {
   width: 80px;
   height: 150px;
-  margin-top: 70px;
-  
-  }
-  h1 {
-    font-size: 40px;
-  }
+}
+h1 {
+  font-size: 40px;
+  height: 120px;
+}
 
-  h2 {
-    font-size: 16px;
-  }
-  #ranking {
-    width: 100px;
+h2 {
+  font-size: 16px;
+}
 
-  }
-  #scoreList {
-    font-size: 16px;
-  }
+#scoreList {
+  font-size: 16px;
+}
 }
 
 @media (width < 700px) {
   #container {
-  margin-top: 0;
-  max-width: 600px;
-  min-width: 500px; 
-  display: flex;
-  flex-direction: column;
+    margin-top: 0;
+    max-width: 600px;
+    min-width: 500px; 
+    display: flex;
+    flex-direction: column;
 }
 #game {
   width: 230px;
@@ -409,42 +402,22 @@ button::after {
   gap: 20px;
   width: 80px;
   height: 150px;
-  margin-top: 100px;
-  
-  }
+  margin-top: 50px;
+  margin-left: 42px;
+}
   h1 {
-  margin-top: 200px;
-    font-size: 50px;
+    margin-bottom: 400px;
+    font-size: 40px;
   }
 
   h2 {
-    font-size: 16px;
+    font-size: 14px;
   }
   #ranking {
-    width: 80px;
-    margin-left: 50px;
-
+    width: 150px;
+    height: 100px;
   }
   #scoreList {
-    font-size: 16px;
+    font-size: 10px;
   }
-}
-
-/* estilos del ranking*/
-
-#h1Ranking {
-  border: 1px solid rgb(22, 41, 47);
-  border-radius: 10px;
-  box-shadow: 5px -2px 20px rgb(52, 163, 150);
-  width: 200px;
-  height: 100px;
-  text-align: center;
-  padding: 10px;
-  margin-bottom: 20px;
-}
-
-#scoreList {
-  color: rgb(117, 165, 151);
-  font-size: 16px;
-  margin-left: 30px;
 }

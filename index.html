@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -7,7 +7,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,700&family=Kalnia:wght@500&display=swap" rel="stylesheet" />
-    <link rel="stylesheet" href="style.css" />  <!-- Aqui el css -->
+    <link rel="stylesheet" href="./style.css" />  <!-- Aqui el css -->
     <title>Juego de memoria</title>
 </head>
 <body>
@@ -24,13 +24,23 @@
                     <button class="level level1" onclick="startGame()">Empezar</button>
                 </section>
             </div>
-            <div class="modal-countdown">
+            <div class="modal-final hide">
+                <section id="modalScoreRetry">
+                    <h2>Tu puntuación es:</h2>
+                    <p class="total-score"></p>
+                </section>
+                <section id="modalRetry">
+                    <h3>¿Quieres volver a jugar?</h3>
+                    <button class="level level1" onclick="startGame()">Empezar</button>
+                </section>
+            </div>
+            <div class="modal-countdown hide">
                 <p class="starting">Empezamos en</p>
                 <p class="countdown"></p>
             </div>
         </div>
     </section>
-
+    
     <header>
         <h1>Juego de Memoria</h1>
         <!--sección barra de tiempo -->
@@ -49,36 +59,15 @@
         
         <!-- sección de puntación -->
         <section id="puntuacionContainer">
-            <h2 id="currentScore">Puntuación: <span id="scoreValue"></span></h2>
-            
-            <h2 id="movimientos" >Movimientos:<span id="movesValue"></span></h2>
-            
+            <h2 id="currentScore">Puntuación: <br><span id="scoreValue"></span></h2>
+            <h2 id="movimientos" >Movimientos: <br><span id="movesValue"></span></h2>
+            <section id="ranking">
+                <h2>Ranking de Puntuaciones:</h2>
+                <ol id="scoreList"></ol>
+            </section>
         <section>
-        <section id="ranking">
-            <h2 id="h1Ranking">Ranking de Puntuaciones:</h2>
-            <ol id="scoreList"></ol>
-        </section>
     </main>
 
-<!-- sección modal final del juego -->
-
-<section class="modal-resumen" id="miSeccion">
-    <div class="modalRetry"></div>
-    <section class="modal-index">
-        <section id="modalScoreRetry">
-            <h2>Tu puntuación es:</h2>
-            <p class="total-score"></p>
-        </section>
-        <section id="modalRetry">
-            <h3>¿Quieres volver a jugar?</h3>
-            <button class="level level1" onclick="retryGame()">Empezar</button>
-        </section>
-        <div class="modal-countdown">
-            <p class="starting">Empezamos en</p>
-            <p class="countdown"></p>
-        </div>
-    </section>
-</section>
-    <script src="main.js"></script>
+    <script src="./main.js"></script>
 </body>
 </html>
