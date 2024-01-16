@@ -186,6 +186,7 @@ img:hover {
   border-radius: 10px;
 }
 
+
 #modalScoreRetry {
   text-align: center;
   width: 400px;
@@ -263,7 +264,7 @@ button{
   margin-top: 20px;
   width: 150px;
   height: 150px;
-  text-align: left;
+  text-align: center;
   justify-content: center;
   background-color: rgb(238, 144, 50);
   cursor: pointer;
