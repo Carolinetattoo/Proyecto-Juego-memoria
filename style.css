@@ -7,23 +7,18 @@
 
 body {
   background-color: rgb(22, 41, 47);
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
-  margin: 0;
+ 
 }
 
 header {
-  position: relative;
-  height: 200px;
+  height: 100px;
+
 }
 
 h1 {
-  margin-top: 100px;
+  margin-top: 30px;
   text-align: center;
-  font-size: 50px;
+  font-size: 35px;
   color:rgb(252, 234, 186); 
   text-shadow: 4px 4px 10px black;
   transition: 1s ease;
@@ -35,37 +30,45 @@ h1:hover {
 }
 
 h2 {
-  margin: 20px;
+  
   text-align: center;
-  font-size: 20px;
+  font-size: 16px;
   color:rgb(252, 234, 186); 
 }
 
 #container {
+  margin-top: 20px;
   display: flex;
-  justify-content: space-around;
-  max-width: 1400px;
-  min-width: 900px;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
 }
 
 #puntuacionContainer {
-  width: 200px;
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 70px;
+
 }
 
+
 #currentScore , #movimientos, #ranking{
-  background-color: rgb(255, 241, 195);
-  color: rgb(22, 41, 47);
+  background-color: rgb(22, 41, 47);
+  color:rgb(252, 234, 186);
   border-radius: 10px;
-  width: 200px;
+  width: 100%;
+  height: 80px;
   text-align: center;
   padding: 10px;
-  margin: 20px 0 35px;
+  margin: auto;
+  box-shadow: -1px 1px 20px 10px rgb(81, 155, 164);
 }
-#currentScore , #movimientos {
-  height: 100px;
-}
+
 #ranking > h2, #scoreList {
-  color: rgb(22, 41, 47);
+  color: rgb(252, 234, 186);
 }
 #scoreList {
   margin-top: 10px;
@@ -73,18 +76,17 @@ h2 {
 }
 
 #game {
-  width: 330px;
-  height: 530px;
+  width:100%;
   display: grid;
-  margin-top: 20px;
   grid-template-columns: repeat(4, 1fr);
-  gap: 10px;
+  gap: 5px;
   list-style: none;
+  
 }
 
 .card {
-  width: 110px;
-  height: 110px;
+  width: 60px;
+  height: 60px;
   perspective: 1000px;
 }
 
@@ -165,26 +167,22 @@ img:hover {
 .modal, .modal-resumen{
   display: flex;
   align-content: center;
+  justify-content: center;
   position: fixed; 
   z-index: 1; 
   width: 100%; 
   height: 100%; 
-  overflow: auto; 
-  background-color: rgb(0,0,0); 
-  background-color: rgba(0,0,0,0.4); 
+  overflow: auto;
 }
+
 .modal-index {
-  display: flex;
-  flex-direction: column;
-  align-content:center;
-  align-items: center;
-  width: 1000px;
-  height: 800px;
+  width: 100vh;
+  height: 100vh;
   color:  rgb(252, 234, 186);
-  margin: auto;
+  margin: 0;
   background-image: url(assets/imagen-modal.jpg);
   background-size: cover;
-  border-radius: 10px;
+  
 }
 
 
@@ -208,16 +206,17 @@ img:hover {
 }
 
 #nickNameContainer {
+  width: 80%;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   margin-top: 50px;
-  gap: 20px;
+  gap: 50px;
 }
 
 #nickname {
-  width: 300px;
+  width: 200px;
   height: 40px;
   color: rgb(22, 41, 47);
   text-align: center;
@@ -225,28 +224,32 @@ img:hover {
 
 .index1, .modal-countdown, .modal-final {
   background-color: rgb(22, 41, 47);
+  position: relative;
+  top: 70px; 
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  width: 400px;
-  height: 475px;
+  width: 260px; 
+  height: 70%;
   margin: auto;
   border-radius: 60px;
   box-shadow: 7px 7px 10px black;
 }
 
+
+
 #levelContainer {
   display: flex;
   flex-direction: column;
-  justify-content: start;
+  justify-content: end;
   align-items: center;
-  gap: 20px;
   border:none; 
 }
 
 .starting {
-  font-size: 36px;
+  font-size: 30px;
+  text-align: center;
 }
 .empty-space {
   height: 120px;
@@ -262,16 +265,15 @@ img:hover {
 /*Estilo boton modal*/
 
 button{
-  margin-top: 20px;
-  width: 150px;
-  height: 150px;
+  margin-top: 30px;
+  width: 110px;
+  height: 110px;
   text-align: center;
   justify-content: center;
   background-color: rgb(238, 144, 50);
   cursor: pointer;
   border: none;
   color: #ffffff;
-  padding: 16px 42px;
   font-weight: bold;
   position: relative;
   border-radius: 50%;
@@ -308,11 +310,11 @@ button::after {
 /* Estilos de barra cuenta atrás */
 .bar-container {
   position: absolute;
-  top: 10rem;
+  top: 8rem;
   width: 100%;
 }
 .bar {
-  height: 20px;
+  height: 10px;
   width: 100%;
   border: 0;
   background-color: blue;
@@ -335,7 +337,7 @@ button::after {
 .hide {
   display: none;
 }
-/* acirtos en las parejas */
+/* aciertos en las parejas */
 .accept {
   animation: cards 0.4s alternate ease-in;
 }
@@ -345,81 +347,190 @@ button::after {
 
 }
 
-/*Media query para el responsive*/
 
-@media (width < 900px) {
-  #container {
-    max-width: 800px;
-    min-width: 600px; 
-    gap: 7px; 
-    display: flex;
-    justify-content: space-between;
-    align-items: start;
-}
-#game {
-  width: 230px;
-  height: 430px;
-  display: grid;
-  margin-top: 20px;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 10px;
-  list-style: none;
-}
-#puntuacionContainer {
-  width: 80px;
-  height: 150px;
-}
-h1 {
-  font-size: 40px;
-  height: 120px;
-}
+/*Media query para el responsive----------------------------------*/
 
-h2 {
-  font-size: 16px;
-}
 
-#scoreList {
-  font-size: 16px;
-}
-}
-
-@media (width < 700px) {
-  #container {
-    margin-top: 0;
-    max-width: 600px;
-    min-width: 500px; 
-    display: flex;
-    flex-direction: column;
-}
-#game {
-  width: 230px;
-  height: 430px;
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 10px;
-  list-style: none;
-}
-#puntuacionContainer {
-  display: flex;
-  gap: 20px;
-  width: 80px;
-  height: 150px;
-  margin-top: 50px;
-  margin-left: 42px;
-}
+@media (width > 600px) {
+ /*para Ipad o tablet*/
   h1 {
-    margin-bottom: 400px;
-    font-size: 40px;
+    margin-top: 40px;
+    font-size: 50px;
   }
 
-  h2 {
-    font-size: 14px;
+  .bar-container {
+    top: 10rem;
+   
   }
-  #ranking {
+
+  #game {
+    margin-top: 100px;
+   
+  }
+  .card {
+    width: 120px;
+    height: 120px; 
+  }
+
+  #puntuacionContainer {
+    width: 495px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    margin: 100px;
+    gap: 0; 
+  
+  }
+  
+  #currentScore , #movimientos, #ranking{
+   
     width: 150px;
     height: 100px;
   }
-  #scoreList {
-    font-size: 10px;
+
+  /*Modal: primera pantalla*/
+
+  .index1 {
+    margin-top: 60px;
+    width: 70%;
+    height: 70%;
   }
+  .index1 h2 {
+    font-size: 30px;
+  }
+  .index1 label {
+    font-size: 30px;
+  }
+  button{
+    
+    width: 150px;
+    height: 150px; 
+    margin-top: 40px;
+    
+  }
+
+  #nickNameContainer {
+    font-size: 20px;
+  }
+
+}
+
+@media (width > 900px) {
+  /*Para Desktop*/
+
+  h1 {
+    margin-top: 70px;
+    font-size: 100px;
+  }
+
+  .bar-container {
+    top: 16rem;
+   
+  }
+  .bar {
+    height: 15px;
+    
+  }
+
+  #container {
+    display: flex;
+    flex-direction: row;
+    gap: 50px; 
+    min-height: 1000px;
+    min-width: 1400px;
+   
+  }
+
+  #game {
+    width: 70%;
+    margin-top: 100px;
+    gap:10px; 
+   
+   
+  }
+  .card {
+    width: 225px;
+    height: 225px; 
+  }
+
+  #puntuacionContainer {
+    width: 20%;
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+    
+  
+  }
+  
+  #currentScore , #movimientos, #ranking{
+   
+    width: 100%;
+    height: 150px;
+    font-size: 30px;
+  }
+  h2 {
+    font-size:30px ;
+  }
+
+  /*moda: pantalla principal*/
+
+
+.modal-index {
+  width: 100%;
+  height: 100%; 
+  color:  rgb(252, 234, 186);
+  margin: 0;
+  background-image: url(assets/imagen-modal.jpg);
+  background-size: contain;
+  
+}
+
+  .index1 {
+    margin-top: 100px;
+    width: 30%;
+    height: 70%;
+    padding: 0;
+    min-width: 500px;
+    
+    
+  }
+  .index1 h2 {
+    font-size: 40px;
+  }
+  .index1 label {
+    font-size: 40px;
+  }
+
+
+  button{
+    width: 200px;
+    height: 200px; 
+    margin-top: 60px;
+    font-size: 24px;
+
+  }
+
+  #nickNameContainer {
+    font-size: 30px;
+    width: 80%;
+    margin-bottom: 50px;
+  }
+
+  #nickNameContainer input {
+    font-size: 24px;
+    height: 50px;
+  }
+
+  
+
+  #levelContainer {
+    width: 80%;
+  }
+
+  .starting {
+    font-size: 150px;
+    
+  }
+
 }
