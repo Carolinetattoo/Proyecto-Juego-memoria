@@ -323,6 +323,14 @@ button::after {
   animation: timer 7s;
   animation-delay: 4s;
 }
+.bar-lv2 {
+  animation: timer 4s;
+  animation-delay: 4s;
+}
+.bar-lv3 {
+  animation: timer 2s;
+  animation-delay: 4s;
+}
 
 @keyframes timer {
   0% {

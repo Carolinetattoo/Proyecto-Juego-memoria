@@ -1,5 +1,5 @@
 const ul = document.querySelector('ul#game'); // Reemplaza 'tu-ul' con el ID real de tu ul
-const tiempoInicio = 10000; // 8 segundos de tiempo de inicio
+let tiempoInicio = null; // 8 segundos de tiempo de inicio
 const flipTime = 1000; // para que cuando fallemos, se sigan viendo durante un segundo las cartas antes de girarlo.
 
 // Array de imágenes
@@ -74,12 +74,14 @@ let movementValue = 0;
 let success = 0;
 let nickname = null;
 let scores = null;
+let acierto = null;
+let fallo = null;
 const modalCountdown = document.querySelector('.modal-countdown');
 const modal = document.querySelector('.modal');
 const modalFinal = document.querySelector('.modal-final');
 const barContainer = document.querySelector('.bar-container');
 const modalP = document.querySelector('.countdown');
-const barEasy = document.querySelector('.bar');
+const barTimeOut = document.querySelector('.bar');
 
 function checkMatch() {
   const [card1, card2] = clickedCards;
@@ -103,13 +105,13 @@ function checkMatch() {
       success++;
 
       if (scorePositive === 1){
-        valueTotalScore += 100;
+        valueTotalScore += acierto;
         movementValue++;
       }else if (scorePositive === 2){
-        valueTotalScore += 125;
+        valueTotalScore += acierto * 1.25;
         movementValue++;
       } else {
-        valueTotalScore += 150;
+        valueTotalScore += acierto * 1.5;
         movementValue++;
       }
 
@@ -117,9 +119,11 @@ function checkMatch() {
 
         const totalScoreModal = document.querySelector('.total-score');
         modal.classList.remove('hide');
-        modalFinal.classList.remove('hide');
-        barEasy.classList.remove('bar-lv1');
         barContainer.classList.remove('hide');
+        modalFinal.classList.remove('hide');
+        barTimeOut.classList.remove('bar-lv1');
+        barTimeOut.classList.remove('bar-lv2');
+        barTimeOut.classList.remove('bar-lv3');
         modalP.innerText = null;
         totalScoreModal.innerText = valueTotalScore;
         
@@ -140,16 +144,16 @@ function checkMatch() {
       card2.classList.remove('flipped');
       scorePositive = 0;
       scoreNegative ++; 
-        if (scoreNegative === 1){
-          valueTotalScore -= 10;
-          movementValue++;
-        }else if (scoreNegative === 2){
-          valueTotalScore -= 20;
-          movementValue++;
-        }else {
-          valueTotalScore -= 30;
-          movementValue++;
-        }
+      if (scoreNegative === 1){
+        valueTotalScore -= fallo;
+        movementValue++;
+      }else if (scoreNegative === 2){
+        valueTotalScore -= fallo * 2;
+        movementValue++;
+      }else {
+        valueTotalScore -= fallo * 3;
+        movementValue++;
+      }
   
   }
 
@@ -200,11 +204,6 @@ function startGame() {
       modalCountdown.classList.add('hide');
       modal.classList.add('hide');
     }, 4000);
-    // Asigno los niveles
-    function easy() {
-      barEasy.classList.add('bar-lv1');
-    }
-    easy();
 
     // Función para iniciar el juego
     function iniciarJuego() {
@@ -225,6 +224,50 @@ function startGame() {
 
   };
 };
+// Asigno los niveles
+const buttons = document.querySelectorAll('.level');
+buttons[0].addEventListener('click', () => {
+  barTimeOut.classList.add('bar-lv1');
+  tiempoInicio = 10000;
+  acierto = 100;
+  fallo = 10;
+  startGame();
+});
+buttons[3].addEventListener('click', () => {
+  barTimeOut.classList.add('bar-lv1');
+  tiempoInicio = 10000;
+  acierto = 100;
+  fallo = 10;
+  startGame();
+});
+buttons[1].addEventListener('click', () => {
+  barTimeOut.classList.add('bar-lv2');
+  tiempoInicio = 7000;
+  acierto = 200;
+  fallo = 20;
+  startGame();
+});
+buttons[4].addEventListener('click', () => {
+  barTimeOut.classList.add('bar-lv2');
+  tiempoInicio = 7000;
+  acierto = 200;
+  fallo = 20;
+  startGame();
+});
+buttons[2].addEventListener('click', () => {
+  barTimeOut.classList.add('bar-lv3');
+  tiempoInicio = 5000;
+  acierto = 300;
+  fallo = 30;
+  startGame();
+});
+buttons[5].addEventListener('click', () => {
+  barTimeOut.classList.add('bar-lv3');
+  tiempoInicio = 5000;
+  acierto = 300;
+  fallo = 30;
+  startGame();
+});
 
 //Función del ranking
 function updateRanking(nickname, score) {
