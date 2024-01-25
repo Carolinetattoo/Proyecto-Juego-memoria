@@ -78,10 +78,10 @@ let acierto = null;
 let fallo = null;
 const modalCountdown = document.querySelector('.modal-countdown');
 const modal = document.querySelector('.modal');
-const modalFinal = document.querySelector('.modal-final');
 const barContainer = document.querySelector('.bar-container');
 const modalP = document.querySelector('.countdown');
 const barTimeOut = document.querySelector('.bar');
+const index1 = document.querySelector('.index1');
 
 function checkMatch() {
   const [card1, card2] = clickedCards;
@@ -118,9 +118,15 @@ function checkMatch() {
       if(success === 8) {
 
         const totalScoreModal = document.querySelector('.total-score');
+        const modalRetry = document.querySelector('.modalScoreRetry');
+        const entryName = document.querySelector('.nickNameContainer');
+        const retryPart = document.querySelector('.retry');
+        entryName.classList.add('hide');
+        modalRetry.classList.remove('hide');
         modal.classList.remove('hide');
         barContainer.classList.remove('hide');
-        modalFinal.classList.remove('hide');
+        retryPart.classList.remove('hide');
+        index1.classList.remove('hide');
         barTimeOut.classList.remove('bar-lv1');
         barTimeOut.classList.remove('bar-lv2');
         barTimeOut.classList.remove('bar-lv3');
@@ -184,9 +190,9 @@ function startGame() {
     nick.appendChild(errorNick);
   } else {
     // Oculto ingreso de nick + nivel y muestro cuenta atrás para empezar
-    const index1 = document.querySelector('.index1');
+    const readyText = document.querySelector('.ready');
+    readyText.classList.add('hide');
     index1.classList.add('hide');
-    modalFinal.classList.add('hide');
     modalCountdown.classList.remove('hide');
     // Cuenta atrás del modal
     let counter = 4;
@@ -218,7 +224,6 @@ function startGame() {
     iniciarJuego();
 
     setTimeout(() => {
-      document.querySelector('h1').style.marginBottom = '120px';
       barContainer.classList.add('hide');
     }, tiempoInicio);
 
@@ -233,13 +238,6 @@ buttons[0].addEventListener('click', () => {
   fallo = 10;
   startGame();
 });
-buttons[3].addEventListener('click', () => {
-  barTimeOut.classList.add('bar-lv1');
-  tiempoInicio = 10000;
-  acierto = 100;
-  fallo = 10;
-  startGame();
-});
 buttons[1].addEventListener('click', () => {
   barTimeOut.classList.add('bar-lv2');
   tiempoInicio = 7000;
@@ -247,21 +245,7 @@ buttons[1].addEventListener('click', () => {
   fallo = 20;
   startGame();
 });
-buttons[4].addEventListener('click', () => {
-  barTimeOut.classList.add('bar-lv2');
-  tiempoInicio = 7000;
-  acierto = 200;
-  fallo = 20;
-  startGame();
-});
 buttons[2].addEventListener('click', () => {
-  barTimeOut.classList.add('bar-lv3');
-  tiempoInicio = 5000;
-  acierto = 300;
-  fallo = 30;
-  startGame();
-});
-buttons[5].addEventListener('click', () => {
   barTimeOut.classList.add('bar-lv3');
   tiempoInicio = 5000;
   acierto = 300;

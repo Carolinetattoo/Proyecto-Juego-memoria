@@ -7,12 +7,10 @@
 
 body {
   background-color: rgb(22, 41, 47);
- 
 }
 
 header {
   height: 100px;
-
 }
 
 h1 {
@@ -30,7 +28,6 @@ h1:hover {
 }
 
 h2 {
-  
   text-align: center;
   font-size: 16px;
   color:rgb(252, 234, 186); 
@@ -51,9 +48,7 @@ h2 {
   flex-direction: column;
   gap: 10px;
   margin-top: 70px;
-
 }
-
 
 #currentScore , #movimientos, #ranking{
   background-color: rgb(22, 41, 47);
@@ -88,23 +83,6 @@ h2 {
   width: 60px;
   height: 60px;
   perspective: 1000px;
-}
-
-.modalFinal {
-  display: flex;
-}
-
-#miModal {
-  display: none;
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  padding: 20px;
-  background-color: #fff;
-  border: 1px solid #ccc;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  z-index: 1;
 }
 
 #levelContainer {
@@ -182,9 +160,7 @@ img:hover {
   margin: 0;
   background-image: url(assets/imagen-modal.jpg);
   background-size: cover;
-  
 }
-
 
 #modalScoreRetry {
   text-align: center;
@@ -194,15 +170,6 @@ img:hover {
   border-top-left-radius: 10px;
   padding-top: 30px;
   border: 3px solid rgba(0, 0, 0, 0);
-}
-
-#modalRetry {
-  text-align: center;
-  width: 400px;
-  height: 300px;
-  border: 3px solid rgba(0, 0, 0, 0);
-  border-bottom-right-radius: 10px;
-  border-bottom-left-radius: 10px;
 }
 
 #nickNameContainer {
@@ -222,7 +189,7 @@ img:hover {
   text-align: center;
 }
 
-.index1, .modal-countdown, .modal-final {
+.index1, .modal-countdown {
   background-color: rgb(22, 41, 47);
   position: relative;
   top: 70px; 
@@ -237,8 +204,6 @@ img:hover {
   box-shadow: 7px 7px 10px black;
 }
 
-
-
 #levelContainer {
   display: flex;
   flex-direction: column;
@@ -251,14 +216,17 @@ img:hover {
   font-size: 30px;
   text-align: center;
 }
+
 .empty-space {
   height: 120px;
 }
+
 .countdown {
   text-align: center;
   font-size: 120px;
   height: 120px;
 }
+
 .error-color {
   color: red;
 }
@@ -277,7 +245,6 @@ button{
   font-weight: bold;
   position: relative;
   border-radius: 50%;
-  
 }
 
 button::after {
@@ -289,7 +256,6 @@ button::after {
   top: 0;
   left: 0;
   background: rgb(255, 217, 122);
-  
   border-radius: 50%;
   animation: pulser 3s ease-in-out infinite;
 }
@@ -313,20 +279,24 @@ button::after {
   top: 8rem;
   width: 100%;
 }
+
 .bar {
   height: 10px;
   width: 100%;
   border: 0;
   background-color: blue;
 }
+
 .bar-lv1 {
   animation: timer 7s;
   animation-delay: 4s;
 }
+
 .bar-lv2 {
   animation: timer 4s;
   animation-delay: 4s;
 }
+
 .bar-lv3 {
   animation: timer 2s;
   animation-delay: 4s;
@@ -345,19 +315,17 @@ button::after {
 .hide {
   display: none;
 }
+
 /* aciertos en las parejas */
 .accept {
   animation: cards 0.4s alternate ease-in;
 }
+
 @keyframes cards {
-  0% {transform: scale(1); }
-  50% {transform: scale(1.5); }
-
+  0% {transform: scale(1);}
+  50% {transform: scale(1.5);}
 }
-
-
 /*Media query para el responsive----------------------------------*/
-
 
 @media (width > 600px) {
  /*para Ipad o tablet*/
@@ -368,12 +336,10 @@ button::after {
 
   .bar-container {
     top: 10rem;
-   
   }
 
   #game {
     margin-top: 100px;
-   
   }
   .card {
     width: 120px;
@@ -387,12 +353,10 @@ button::after {
     justify-content: space-between;
     align-items: center;
     margin: 100px;
-    gap: 0; 
-  
+    gap: 0;
   }
   
   #currentScore , #movimientos, #ranking{
-   
     width: 150px;
     height: 100px;
   }
@@ -404,18 +368,19 @@ button::after {
     width: 70%;
     height: 70%;
   }
+
   .index1 h2 {
     font-size: 30px;
   }
+
   .index1 label {
     font-size: 30px;
   }
+
   button{
-    
     width: 150px;
     height: 150px; 
     margin-top: 40px;
-    
   }
 
   #nickNameContainer {
@@ -438,7 +403,6 @@ button::after {
   }
   .bar {
     height: 15px;
-    
   }
 
   #container {
@@ -447,16 +411,14 @@ button::after {
     gap: 50px; 
     min-height: 1000px;
     min-width: 1400px;
-   
   }
 
   #game {
     width: 70%;
     gap:10px; 
-    margin:0; 
-   
-   
+    margin:0;
   }
+
   .card {
     width: 150px;
     height: 150px; 
@@ -467,32 +429,28 @@ button::after {
     display: flex;
     flex-direction: column;
     gap: 40px;
-    
-  
   }
   
   #currentScore , #movimientos, #ranking{
-   
     width: 100%;
     height: 120px;
     font-size: 30px;
   }
+
   h2 {
     font-size: 24px ;
   }
 
   /*modal: pantalla principal*/
 
-
-.modal-index {
-  width: 100%;
-  height: 100%; 
-  color:  rgb(252, 234, 186);
-  margin: 0;
-  background-image: url(assets/imagen-modal.jpg);
-  background-size: contain;
-  
-}
+  .modal-index {
+    width: 100%;
+    height: 100%; 
+    color:  rgb(252, 234, 186);
+    margin: 0;
+    background-image: url(assets/imagen-modal.jpg);
+    background-size: contain;
+  }
 
   .index1 {
     margin-top: 100px;
@@ -500,23 +458,21 @@ button::after {
     height: 70%;
     padding: 0;
     min-width: 500px;
-    
-    
   }
+
   .index1 h2 {
     font-size: 40px;
   }
+
   .index1 label {
     font-size: 40px;
   }
-
 
   button{
     width: 200px;
     height: 200px; 
     margin-top: 60px;
     font-size: 24px;
-
   }
 
   #nickNameContainer {
@@ -530,19 +486,15 @@ button::after {
     height: 50px;
   }
 
-  
-
   #levelContainer {
     width: 80%;
   }
 
   .starting {
     font-size: 70px;
-    
   }
   .modal-countdown {
     width: 1000px;
-    
   }
 
 }
